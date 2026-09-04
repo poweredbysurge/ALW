@@ -1,0 +1,451 @@
+@import 'tailwindcss';
+
+/* ---------------------------------------------------------------------------
+   Aligned Within — design tokens.
+   Everything here becomes a Tailwind utility: --color-gold -> bg-gold /
+   text-gold / border-gold, --font-display -> font-display, and so on.
+   Change a value once here and it propagates through the whole site.
+--------------------------------------------------------------------------- */
+@theme {
+  /* Grounds — lightest to warmest */
+  --color-paper: #fdfbf6;
+  --color-shell: #f8f5ee;
+  --color-sand: #f7f1e6;
+  --color-dune: #eae0d0;
+
+  /* Rules & hairlines */
+  --color-line: #d9cebf;
+  --color-line-soft: #cbbfae;
+
+  /* Type */
+  --color-ink: #3e3428;
+  --color-ink-soft: #6e5f4e;
+  --color-clay: #8a6f5b;
+  --color-clay-mid: #796958;
+  --color-clay-deep: #5f4937;
+
+  /* Accents */
+  --color-gold: #dfa35b;
+  --color-gold-bright: #e7b374;
+  --color-gold-soft: #efc98a;
+  --color-sage: #6c8c84;
+  --color-sage-soft: #9db2ad;
+
+  /* Pale accents — the versions to use on any dark ground (ink or ink-soft).
+     Full-strength gold and sage cannot clear 4.5:1 on ink-soft; these do,
+     on both dark grounds, so they are the single answer for dark bands. */
+  --color-sage-pale: #cfe4dc;
+  --color-gold-pale: #f7e0b0;
+  --color-shadow: #754e25;
+
+  /* Typefaces — loaded and self-hosted via next/font in app/layout.tsx */
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-body: var(--font-inter), system-ui, sans-serif;
+
+  /* Motion */
+  --ease-settle: cubic-bezier(.2, .8, .25, 1);
+}
+
+@layer base {
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--color-shell); color: var(--color-ink); font-family: var(--font-body); font-size: 16px; }
+  a { color: inherit; text-decoration: none; }
+}
+
+@layer components {
+
+  /* Shared site system */
+  .site { --pad: clamp(28px, 5.55vw, 80px); min-width: 320px; overflow: clip; }
+  .site h1, .site h2, .site h3, .site p { margin-top: 0; }
+  .site p { line-height: 1.72; }
+  .section-pad { padding-left: var(--pad); padding-right: var(--pad); }
+  .skip-link { position: fixed; z-index: 1000; top: -100px; left: 20px; padding: 12px 18px; background: white; }
+  .skip-link:focus { top: 12px; }
+  .site-nav { position: sticky; z-index: 50; top: 0; min-height: 101px; display: grid; grid-template-columns: minmax(228px, 1.1fr) minmax(0, auto) minmax(180px, .8fr); align-items: center; gap: 30px; padding: 14px var(--pad); border-bottom: 1px solid color-mix(in srgb, var(--color-ink) 15%, transparent); background: color-mix(in srgb, var(--color-paper) 94%, transparent); backdrop-filter: blur(14px); }
+  .site-brand { display: flex; align-items: center; gap: 14px; width: max-content; }
+  .site-brand > span:last-child { display: flex; flex-direction: column; gap: 3px; }
+  .site-brand b { font: 400 23px/1 var(--font-display); }
+  .site-brand small { color: var(--color-clay); font: 500 12px/1 var(--font-body); letter-spacing: .12em; text-transform: uppercase; }
+  .site-nav nav { display: flex; min-width: 0; justify-content: center; gap: clamp(12px, 1.35vw, 26px); }
+  .site-nav nav a { position: relative; padding: 11px 0; white-space: nowrap; font: 500 clamp(14px, 1.05vw, 16px)/1 var(--font-body); letter-spacing: .035em; }
+  .site-nav nav a::after { content: ''; position: absolute; bottom: 3px; left: 0; width: 100%; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform .3s ease; }
+  .site-nav nav a:hover::after, .site-nav nav a:focus-visible::after { transform: scaleX(1); }
+  .site-nav > .button { justify-self: end; min-height: 50px; padding: 0 22px; font-size: 13px; gap: 14px; }
+  .button { display: inline-flex; align-items: center; justify-content: center; gap: 18px; min-height: 52px; padding: 0 24px; border: 0; border-radius: 2px; font: 600 12px/1 var(--font-body); letter-spacing: .095em; text-transform: uppercase; cursor: pointer; transition: transform .3s ease, box-shadow .3s ease, background .3s ease; }
+  .button:hover { transform: translateY(-2px); box-shadow: 0 12px 28px color-mix(in srgb, var(--color-shadow) 16%, transparent); }
+  .button--small { min-height: 42px; padding: 0 18px; font-size: 11px; }
+  .button--primary { background: var(--color-gold); color: var(--color-ink); }
+  .button--primary:hover { background: var(--color-gold-bright); }
+  .button--dark { background: var(--color-ink); color: var(--color-paper); }
+  .text-link { display: inline-flex; align-items: center; gap: 12px; width: max-content; border: 0; padding: 5px 0; background: none; color: inherit; font: 600 12px/1 var(--font-body); letter-spacing: .08em; text-transform: uppercase; cursor: pointer; }
+  .text-link span { transition: transform .25s ease; }
+  .text-link:hover span { transform: translate(3px,-2px); }
+  .text-link--rule { padding-bottom: 11px; border-bottom: 1px solid currentColor; }
+  .eyebrow { color: var(--color-sage); font: 600 12px/1 var(--font-body); letter-spacing: .14em; text-transform: uppercase; }
+  [data-reveal] { opacity: 0; transform: translateY(14px); transition: opacity .65s ease-out var(--delay, 0ms), transform .65s ease-out var(--delay, 0ms); }
+  [data-reveal].is-visible { opacity: 1; transform: translateY(0); }
+  .hero-line { display: block; opacity: 0; transform: translateY(16px); animation: hero-breathe .72s ease-out both; }
+  .hero-line--1 { animation-delay: .25s; }
+  .hero-line--2 { animation-delay: .38s; }
+  .hero-line--3 { animation-delay: .52s; }
+  .hero-line--4 { animation-delay: .68s; }
+  @keyframes hero-breathe { to { opacity: 1; transform: translateY(0); } }
+  .section-heading h2 { margin-bottom: 28px; font: 300 clamp(42px, 4.2vw, 62px)/1.05 var(--font-display); letter-spacing: -.03em; }
+  .section-heading h2 em { font-weight: 300; }
+  .section-heading > p:last-child { max-width: 450px; color: var(--color-clay); font-size: 18px; }
+  .form-success { min-height: 330px; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: 36px; border-top: 1px solid currentColor; border-bottom: 1px solid currentColor; }
+  .form-success__mark { display: grid; place-items: center; width: 50px; height: 50px; margin-bottom: 24px; border: 1px solid currentColor; border-radius: 50%; }
+  .form-success h3 { margin-bottom: 10px; font: 300 32px/1.1 var(--font-display); }
+  .form-success p { max-width: 460px; color: inherit; opacity: .72; }
+  .consult-form { display: flex; flex-direction: column; gap: 28px; }
+  .consult-form label { display: flex; flex-direction: column; gap: 9px; }
+  .consult-form label > span { font: 600 11px/1 var(--font-body); letter-spacing: .12em; text-transform: uppercase; }
+  .field-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .consult-form input, .consult-form textarea { width: 100%; border: 0; border-bottom: 1px solid color-mix(in srgb, var(--color-ink) 35%, transparent); border-radius: 0; padding: 14px 0; outline: none; background: transparent; color: inherit; font: 400 16px/1.4 var(--font-body); resize: vertical; transition: border-color .2s ease, box-shadow .2s ease; }
+  .consult-form input::placeholder, .consult-form textarea::placeholder { color: currentColor; opacity: .48; }
+  .consult-form input:focus, .consult-form textarea:focus { border-color: var(--color-gold); box-shadow: 0 2px 0 color-mix(in srgb, var(--color-gold-soft) 42%, transparent); }
+  .form-submit { display: flex; align-items: center; gap: 26px; }
+  .form-submit p { max-width: 250px; margin: 0; color: var(--color-clay); font-size: 13px; line-height: 1.55; }
+  .faq-list details { border-top: 1px solid currentColor; }
+  .faq-list details:last-of-type { border-bottom: 1px solid currentColor; }
+  .faq-list summary { display: flex; justify-content: space-between; align-items: center; padding: 26px 0; list-style: none; cursor: pointer; font-size: 19px; }
+  .faq-list summary::-webkit-details-marker { display: none; }
+  .faq-list summary span { font-size: 24px; font-weight: 300; transition: transform .25s ease; }
+  .faq-list details[open] summary span { transform: rotate(45deg); }
+  .faq-list details p { max-width: 680px; margin: -8px 0 28px; color: inherit; opacity: .72; font-size: 16px; }
+  .footer-label { margin-bottom: 22px !important; opacity: .56; font: 600 11px/1 var(--font-body) !important; letter-spacing: .14em; text-transform: uppercase; }
+  .footer-brand h2 { margin: 14px 0 7px; font-weight: 400; }
+  .footer-brand p { opacity: .65; font-size: 14px !important; line-height: 1.6 !important; }
+  .footer-bottom { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr 1fr; padding-top: 26px; border-top: 1px solid currentColor; font-size: 11px; letter-spacing: .04em; opacity: .58; }
+  .footer-bottom span:nth-child(2) { text-align: center; }
+  .footer-bottom span:last-child { text-align: right; }
+
+  /* Direction 01 — Sunlit Study */
+  .sunlit { background: var(--color-paper); color: var(--color-ink); font-family: var(--font-body); }
+  .sunlit-hero { position: relative; min-height: 820px; display: grid; grid-template-columns: 7fr 3fr; padding: 115px var(--pad) 92px; overflow: hidden; }
+  .sunlit-hero__wash { position: absolute; inset: 0; background: radial-gradient(circle at 80% 32%, color-mix(in srgb, var(--color-gold-soft) 48%, transparent), transparent 30%), linear-gradient(130deg, var(--color-paper) 36%, color-mix(in srgb, var(--color-sand) 75%, transparent) 70%, color-mix(in srgb, var(--color-gold) 15%, transparent)); background-size: 115% 115%; animation: changing-light 20s ease-in-out infinite alternate; }
+  @keyframes changing-light { from { background-position: 0% 40%; } to { background-position: 100% 62%; } }
+  .sunlit-hero__ghost { position: absolute; top: 66px; right: 3vw; opacity: .22; transform: scale(3.1); }
+  .sunlit-hero__copy { position: relative; z-index: 2; max-width: 950px; align-self: center; }
+  .sunlit-hero__copy h1 { max-width: 1000px; margin: 27px 0 34px; font: 300 clamp(60px, 6.6vw, 94px)/.94 var(--font-display); letter-spacing: -.052em; }
+  .sunlit-hero__copy h1 em { font-weight: 300; }
+  .sunlit-hero .hero-intro { max-width: 610px; color: var(--color-ink-soft); font-size: 19px; line-height: 1.72; }
+  .hero-actions { display: flex; align-items: center; gap: 32px; margin-top: 38px; }
+  .intro-statement { display: grid; grid-template-columns: 1fr 2.4fr 1fr; gap: 5vw; align-items: start; padding-top: 132px; padding-bottom: 140px; background: var(--color-paper); }
+  .intro-statement h2 { margin: -8px 0 0; font: 300 clamp(40px, 4.5vw, 64px)/1.1 var(--font-display); letter-spacing: -.035em; }
+  .intro-statement > p:last-child { color: var(--color-clay); font-size: 17px; }
+  .sunlit-treatments { padding-top: 140px; padding-bottom: 150px; background: var(--color-sand); }
+  .sunlit-treatments .section-heading { display: grid; grid-template-columns: .65fr 1.3fr 1fr; gap: 5vw; align-items: start; margin-bottom: 85px; }
+  .sunlit-treatments .section-heading h2 { margin-top: -12px; }
+  .treatment-list { border-top: 1px solid var(--color-line-soft); }
+  .treatment-list article { display: grid; grid-template-columns: 70px .75fr 1.65fr .75fr; gap: 35px; align-items: start; padding: 38px 0; border-bottom: 1px solid var(--color-line-soft); }
+  .treatment-list article > span { padding-top: 8px; color: var(--color-sage); font-size: 12px; letter-spacing: .12em; }
+  .treatment-list h3 { margin: 0; font: 400 31px/1.15 var(--font-display); }
+  .treatment-list p { margin: 0; color: var(--color-ink-soft); font-size: 16px; }
+  .treatment-list a { justify-self: end; padding-top: 8px; color: var(--color-clay); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; }
+  .sunlit-modalities { position: relative; padding-top: 145px; padding-bottom: 155px; background: var(--color-paper); }
+  .modalities-intro { width: 50%; margin-bottom: 70px; }
+  .modalities-intro h2 { margin: 18px 0 25px; font: 300 clamp(46px, 4.9vw, 70px)/1 var(--font-display); letter-spacing: -.04em; }
+  .modalities-intro > p:last-child { max-width: 570px; color: var(--color-clay); font-size: 17px; }
+  .modality-cards { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--color-line); border-bottom: 1px solid var(--color-line); }
+  .modality-cards article { min-height: 360px; padding: 40px 4vw 36px 0; border-right: 1px solid var(--color-line); }
+  .modality-cards article + article { padding-left: 4vw; }
+  .modality-cards article:last-child { padding-right: 0; border-right: 0; }
+  .modality-cards i { display: grid; place-items: center; width: 40px; height: 40px; margin-bottom: 72px; border: 1px solid var(--color-gold); border-radius: 50%; color: var(--color-gold); font: italic 300 18px var(--font-display); }
+  .modality-cards h3 { min-height: 58px; margin-bottom: 20px; font: 400 26px/1.15 var(--font-display); }
+  .modality-cards p { min-height: 110px; color: var(--color-clay); font-size: 16px; }
+  .modality-cards > article > span { color: var(--color-sage); font-size: 11px; letter-spacing: .13em; text-transform: uppercase; }
+  .sunlit-services { display: grid; grid-template-columns: .88fr 1.12fr; min-height: 780px; padding-top: 110px; padding-bottom: 110px; background: var(--color-ink-soft); color: var(--color-paper); }
+  .services-photo { min-height: 560px; position: relative; background: linear-gradient(color-mix(in srgb, var(--color-ink) 3%, transparent), color-mix(in srgb, var(--color-ink) 20%, transparent)), url('https://images.unsplash.com/photo-1646151732685-52504f79d621?auto=format&fit=crop&w=1400&q=82') center / cover; }
+  .image-label { position: absolute; left: 22px; bottom: 22px; padding: 10px 13px; background: color-mix(in srgb, var(--color-paper) 86%, transparent); color: var(--color-ink); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; }
+  .services-copy { padding: 30px 0 0 8vw; }
+  .services-copy .eyebrow { color: var(--color-sage-pale); }
+  .services-copy > h2 { margin: 24px 0 55px; font: 300 clamp(42px, 4.2vw, 62px)/1.05 var(--font-display); letter-spacing: -.03em; }
+  .service-row { display: grid; grid-template-columns: 44px 1fr; gap: 18px; padding: 22px 0; border-top: 1px solid color-mix(in srgb, var(--color-paper) 30%, transparent); }
+  .service-row > span { color: var(--color-gold-pale); font-size: 11px; }
+  .service-row h3 { margin-bottom: 6px; font: 400 20px var(--font-display); }
+  .service-row p { max-width: 490px; margin: 0; color: color-mix(in srgb, var(--color-paper) 80%, transparent); font-size: 15px; }
+  .sunlit-about { display: grid; grid-template-columns: .7fr 1fr .54fr; gap: 7vw; align-items: center; padding-top: 150px; padding-bottom: 150px; background: var(--color-paper); }
+  .about-portrait { align-self: stretch; }
+  .portrait-photo { display: block; width: 100%; height: 100%; min-height: 530px; object-fit: cover; object-position: 50% 20%; }
+  .about-portrait small { display: block; padding-top: 13px; color: var(--color-clay); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
+  .about-copy h2 { margin: 22px 0 31px; font: 300 clamp(42px, 4.4vw, 64px)/1.03 var(--font-display); letter-spacing: -.035em; }
+  .about-copy .about-lede { max-width: 530px; color: var(--color-ink); font: italic 300 24px/1.4 var(--font-display); }
+  .about-copy > p:not(.eyebrow):not(.about-lede) { max-width: 570px; color: var(--color-clay-mid); font-size: 16px; }
+  .about-copy .text-link { margin-top: 20px; }
+  .sunlit-about blockquote { align-self: end; margin: 0 0 40px; padding-top: 22px; border-top: 1px solid var(--color-gold); color: var(--color-clay); font: italic 300 20px/1.45 var(--font-display); }
+  .sunlit-consult { display: grid; grid-template-columns: .8fr 1.2fr; gap: 10vw; align-items: start; padding-top: 140px; padding-bottom: 145px; background: var(--color-gold); }
+  .consult-heading h2 { margin: 23px 0 27px; font: 300 clamp(50px, 5.2vw, 74px)/.98 var(--font-display); letter-spacing: -.04em; }
+  .consult-heading > p:not(.eyebrow) { max-width: 500px; font-size: 17px; }
+  .consult-reassurance { display: flex; align-items: center; gap: 18px; margin-top: 40px; }
+  .consult-reassurance span { font: italic 300 16px/1.45 var(--font-display); }
+  .sunlit-consult .consult-form { padding-top: 10px; }
+  .sunlit-consult .consult-form input, .sunlit-consult .consult-form textarea { border-bottom-color: color-mix(in srgb, var(--color-ink) 50%, transparent); }
+  .sunlit-consult .form-submit p { color: var(--color-clay-deep); }
+  .sunlit-faq { display: grid; grid-template-columns: .72fr 1.28fr; gap: 10vw; padding-top: 140px; padding-bottom: 150px; background: var(--color-sand); }
+  .sunlit-faq .section-heading h2 { margin-top: 24px; }
+  .sunlit-faq .section-heading .text-link { margin-top: 20px; }
+  .sunlit-footer { display: grid; grid-template-columns: 1.4fr repeat(3, .65fr); gap: 6vw; padding: 95px var(--pad) 28px; background: var(--color-ink); color: var(--color-paper); }
+  .sunlit-footer .footer-brand h2 { font: 300 38px var(--font-display); }
+  .sunlit-footer > div:not(.footer-brand):not(.footer-bottom) { display: flex; flex-direction: column; align-items: flex-start; }
+  .sunlit-footer a, .sunlit-footer > div > p:not(.footer-label) { margin-bottom: 13px; color: color-mix(in srgb, var(--color-paper) 68%, transparent); font-size: 14px; line-height: 1.65; }
+  .sunlit-footer a:hover { color: var(--color-gold); }
+  .sunlit-footer .footer-bottom { margin-top: 70px; }
+
+  @media (max-width: 1180px) {
+    .site-nav { grid-template-columns: 1fr auto; }
+    .site-nav nav { display: none; }
+    .sunlit-hero { grid-template-columns: 1fr; }
+    .treatment-list article { grid-template-columns: 45px .8fr 1.4fr; }
+    .treatment-list article a { display: none; }
+    .sunlit-about { grid-template-columns: .75fr 1fr; }
+    .sunlit-about blockquote { display: none; }
+  }
+
+  @media (max-width: 780px) {
+    .site-nav { min-height: 91px; }
+    .site-brand b { font-size: 20px; }
+    .site-nav > .button { padding: 0 15px; }
+    .sunlit-hero { min-height: auto; display: block; padding-top: 90px; padding-bottom: 100px; }
+    .sunlit-hero__copy h1 { font-size: clamp(48px, 14vw, 68px); }
+    .hero-actions { align-items: flex-start; flex-direction: column; }
+    .intro-statement, .sunlit-treatments .section-heading, .sunlit-services, .sunlit-consult, .sunlit-faq { grid-template-columns: 1fr; }
+    .intro-statement { gap: 34px; }
+    .treatment-list article { grid-template-columns: 36px 1fr; gap: 18px; }
+    .treatment-list article p { grid-column: 2; }
+    .modality-cards { grid-template-columns: 1fr; }
+    .modality-cards article, .modality-cards article + article { min-height: 0; padding: 36px 0; border-right: 0; border-bottom: 1px solid var(--color-line); }
+    .modality-cards i { margin-top: 0; margin-bottom: 28px; }
+    .modality-cards p { min-height: 0; }
+    .services-photo { min-height: 430px; }
+    .services-copy { padding: 70px 0 0; }
+    .sunlit-about { grid-template-columns: 1fr; }
+    .portrait-photo { min-height: 430px; }
+    .field-pair { grid-template-columns: 1fr; }
+    .form-submit { align-items: flex-start; flex-direction: column; }
+
+    .sunlit-footer { grid-template-columns: 1fr 1fr; }
+    .sunlit-footer .footer-brand { grid-column: 1 / -1; margin-bottom: 35px; }
+
+    .footer-bottom { grid-template-columns: 1fr; gap: 11px; }
+    .footer-bottom span:nth-child(2), .footer-bottom span:last-child { text-align: left; }
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Palette variant: Meadow.
+   Same naturals — paper, sand, dune, clays, ink are all untouched. Only the two
+   accent families move: gold goes brighter and yellower, sage goes deeper and
+   greener. Every value here was chosen to clear WCAG AA (4.5:1) against the
+   ground it actually sits on, which the approved palette does not yet do.
+   Scoped to .palette-meadow, so the live homepage is unaffected.
+--------------------------------------------------------------------------- */
+@layer components {
+  .palette-meadow {
+    /* Accent — brighter, yellower */
+    --color-gold: #e6c15c;
+    --color-gold-bright: #efd07a;
+    --color-gold-soft: #f6e3ab;
+
+    /* Accent — deeper, greener */
+    --color-sage: #43765f;
+    --color-sage-soft: #a6c3b2;
+
+    /* Two role colours the brighter yellow makes necessary: a bright fill
+       cannot double as small text on a light ground, so text gets its own. */
+    --color-amber: #8a6a2e;
+    --color-sage-on-gold: #2f5a47;
+  }
+
+  /* Gold used as small text on a light ground -> the deeper amber. */
+  .palette-meadow .service-row > span,
+  .palette-meadow .modality-cards i { color: var(--color-amber); }
+  .palette-meadow .modality-cards i { border-color: var(--color-amber); }
+
+  /* The consultation band is a field of gold; labels on it need the deep green. */
+  .palette-meadow .sunlit-consult .eyebrow { color: var(--color-sage-on-gold); }
+
+  /* A gold focus ring is invisible against the gold band — use ink there. */
+  .palette-meadow .sunlit-consult .consult-form input:focus,
+  .palette-meadow .sunlit-consult .consult-form textarea:focus {
+    border-color: var(--color-ink);
+    box-shadow: 0 2px 0 color-mix(in srgb, var(--color-ink) 30%, transparent);
+  }
+}
+
+/* Palette review bar — preview routes only, never the live homepage. */
+@layer components {
+  .palette-bar {
+    position: relative;
+    z-index: 60;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 12px var(--pad, 40px);
+    background: var(--color-ink);
+    color: var(--color-paper);
+    font: 500 10px/1.4 var(--font-body);
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+  .palette-bar__now { display: flex; align-items: baseline; gap: 10px; }
+  .palette-bar__now b { font-weight: 600; letter-spacing: .1em; }
+  .palette-bar__now small { opacity: .6; font-size: 9px; }
+  .palette-bar__note {
+    flex: 1 1 240px;
+    opacity: .62;
+    font-size: 9px;
+    letter-spacing: .06em;
+    text-transform: none;
+  }
+  .palette-bar a { color: var(--color-gold); white-space: nowrap; }
+  .palette-bar a:hover { color: var(--color-gold-bright); }
+}
+
+/* ---------------------------------------------------------------------------
+   Hero portrait variant.
+   Ellie sits in the right of the hero, inside the existing composition rather
+   than on top of it: the ring mark and the gold wash stay where they are, and
+   the portrait's edges are feathered with a mask so the cream wall behind her
+   dissolves into the cream page. No cut-out needed — the grounds already match.
+--------------------------------------------------------------------------- */
+@layer components {
+  .sunlit-hero--portrait { grid-template-columns: 1.1fr .9fr; align-items: center; }
+  .sunlit-hero--portrait .sunlit-hero__copy { max-width: 640px; }
+  .sunlit-hero--portrait .sunlit-hero__ghost { top: 40px; right: 12vw; opacity: .18; }
+
+  .hero-portrait {
+    position: relative;
+    z-index: 1;
+    align-self: end;
+    justify-self: center;
+    margin: 0;
+    width: 100%;
+    max-width: 520px;
+  }
+
+  /* Name and title sit on the paper directly beneath the feathered edge, where
+     the portrait has already dissolved — so they read as a caption, not a
+     label pasted over the photograph. */
+  .hero-portrait__id {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 7px;
+    margin-top: 6px;
+    padding-top: 22px;
+    border-top: 1px solid var(--color-line);
+    text-align: right;
+  }
+  .hero-portrait__id b {
+    color: var(--color-ink);
+    font: 400 20px/1.2 var(--font-display);
+    letter-spacing: -.005em;
+  }
+  .hero-portrait__id span {
+    color: var(--color-clay);
+    font: 600 11px/1 var(--font-body);
+    letter-spacing: .13em;
+    text-transform: uppercase;
+  }
+  .hero-portrait img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 660px;
+    object-fit: cover;
+    object-position: 50% 8%;
+    /* Soft oval feather: solid through the face, dissolving at every edge. */
+    -webkit-mask-image: radial-gradient(78% 72% at 50% 40%, #000 58%, transparent 100%);
+    mask-image: radial-gradient(78% 72% at 50% 40%, #000 58%, transparent 100%);
+  }
+
+  @media (max-width: 1180px) {
+    .sunlit-hero--portrait { grid-template-columns: 1fr .8fr; }
+    .sunlit-hero--portrait .sunlit-hero__ghost { right: 4vw; }
+  }
+  /* Stacked: she follows the copy, so the promise is read and then met. */
+  @media (max-width: 780px) {
+    .sunlit-hero--portrait { display: block; }
+    .hero-portrait { max-width: 340px; margin: 44px auto 0; }
+    .hero-portrait img { max-height: 420px; }
+    .hero-portrait__id { align-items: center; text-align: center; }
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Sun mark.
+   The artwork is a single filled shape, so it is coloured with `color` and
+   animated by transform rather than by stroke. Each placement picks its colour
+   from the token set; the navigation lockup stays still, because a logo that
+   moves every time you scroll past it becomes noise.
+--------------------------------------------------------------------------- */
+@layer components {
+  .sun-mark {
+    display: block;
+    flex: 0 0 auto;
+    width: 38px;
+    height: 38px;
+    color: var(--color-gold);
+    overflow: visible;
+  }
+  .sun-mark__art { transform-origin: 50% 50%; }
+
+  /* -- Navigation: brand gold, deliberately static, on a soft warm halo.
+        The glow sits on its own element behind the artwork because pseudo-
+        elements do not render on an <svg>. ---------------------------------- */
+  .site-brand__mark {
+    position: relative;
+    display: inline-grid;
+    flex: 0 0 auto;
+    place-items: center;
+  }
+  .site-brand__mark::before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    width: 79px;
+    height: 79px;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle,
+      color-mix(in srgb, var(--color-gold) 34%, transparent) 0%,
+      color-mix(in srgb, var(--color-gold-soft) 40%, transparent) 38%,
+      transparent 70%
+    );
+    transition: opacity .4s ease, transform .4s var(--ease-settle);
+  }
+  .site-brand:hover .site-brand__mark::before { opacity: .85; transform: scale(1.12); }
+  .site-brand .sun-mark { position: relative; z-index: 1; width: 43px; height: 43px; }
+
+  /* -- Hero backdrop: this is the light in the scene, so it turns on a very
+        long cycle and breathes. Slow enough to read as atmosphere. --------- */
+  /* Backdrop only — held still, so it reads as part of the scene. */
+  .sunlit-hero__ghost .sun-mark { width: 340px; height: 340px; }
+
+  /* -- Consultation band: sits on gold, so it inks up, and settles into place
+        when the section is reached — a small moment at the point of asking. */
+  .consult-reassurance .sun-mark { width: 46px; height: 46px; color: var(--color-ink); }
+  .consult-reassurance .sun-mark__art { opacity: 0; }
+  [data-reveal].is-visible .consult-reassurance .sun-mark__art {
+    animation: sun-settle 1.2s var(--ease-settle) forwards;
+  }
+  @keyframes sun-settle {
+    from { opacity: 0; transform: rotate(-35deg) scale(.7); }
+    to   { opacity: 1; transform: rotate(0) scale(1); }
+  }
+
+  /* -- Footer: gold on ink, easing open as the footer arrives. ------------- */
+  .footer-brand .sun-mark { width: 78px; height: 78px; }
+  .footer-brand .sun-mark__art { animation: sun-settle 1.6s var(--ease-settle) both; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
+  [data-reveal], .hero-line { opacity: 1 !important; transform: none !important; }
+  .sun-mark__art { animation: none !important; transform: none !important; opacity: 1 !important; }
+}

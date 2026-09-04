@@ -1,0 +1,628 @@
+<title>Aligned Within Palette</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300&family=Inter:wght@400;500;600&display=swap">
+
+<style>
+  /* ---------------------------------------------------------------------
+     This page is set in the Aligned Within palette itself. It commits to
+     the brand's paper ground in every viewing context on purpose: a colour
+     reference shown on any other ground misrepresents the colours.
+  --------------------------------------------------------------------- */
+  :root {
+    --paper: #fdfbf6;
+    --shell: #f8f5ee;
+    --sand: #f7f1e6;
+    --dune: #eae0d0;
+    --line: #d9cebf;
+    --line-soft: #cbbfae;
+    --ink: #3e3428;
+    --ink-soft: #6e5f4e;
+    --clay: #8a6f5b;
+    --clay-mid: #796958;
+    --clay-deep: #5f4937;
+    --gold: #dfa35b;
+    --gold-bright: #e7b374;
+    --gold-soft: #efc98a;
+    --sage: #6c8c84;
+    --sage-soft: #9db2ad;
+    --shadow: #754e25;
+
+    --display: Fraunces, Georgia, serif;
+    --body: Inter, system-ui, -apple-system, sans-serif;
+
+    --measure: 62ch;
+    --gutter: clamp(24px, 5vw, 76px);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--shell);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 15px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .sheet {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: clamp(40px, 7vw, 96px) var(--gutter) 96px;
+    background: var(--paper);
+    min-height: 100vh;
+  }
+
+  /* ---- Masthead ---- */
+  .masthead {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 28px;
+    padding-bottom: 34px;
+    border-bottom: 1px solid var(--line);
+  }
+  .eyebrow {
+    margin: 0;
+    color: var(--sage);
+    font: 600 11px/1 var(--body);
+    letter-spacing: .14em;
+    text-transform: uppercase;
+  }
+  h1 {
+    margin: 20px 0 0;
+    max-width: 16ch;
+    font: 300 clamp(40px, 5.4vw, 68px)/1.02 var(--display);
+    letter-spacing: -.035em;
+    text-wrap: balance;
+  }
+  .masthead__meta {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding-bottom: 8px;
+    color: var(--clay);
+    font-size: 12px;
+    letter-spacing: .04em;
+    text-align: right;
+  }
+  .masthead__meta b {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .lede {
+    max-width: var(--measure);
+    margin: 40px 0 0;
+    color: var(--ink-soft);
+    font-size: 17px;
+    line-height: 1.7;
+  }
+  .lede em {
+    color: var(--ink);
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 300;
+  }
+
+  /* ---- Section rhythm ---- */
+  section { margin-top: clamp(56px, 7vw, 88px); }
+
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--line);
+  }
+  .section-head h2 {
+    margin: 0;
+    font: 400 27px/1.15 var(--display);
+    letter-spacing: -.01em;
+  }
+  .section-head p {
+    margin: 0;
+    max-width: 46ch;
+    color: var(--clay);
+    font-size: 13.5px;
+    text-align: right;
+  }
+
+  /* ---- Swatch grid ---- */
+  .swatches {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(232px, 1fr));
+    gap: 1px;
+    margin-top: 30px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+  .swatch {
+    display: flex;
+    flex-direction: column;
+    background: var(--paper);
+    border: 0;
+    padding: 0;
+    font: inherit;
+    color: inherit;
+    text-align: left;
+    cursor: pointer;
+  }
+  .swatch:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: -2px;
+  }
+  .chip {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    min-height: 132px;
+    padding: 16px;
+    transition: min-height .3s cubic-bezier(.2, .8, .25, 1);
+  }
+  .chip span {
+    font-size: 12.5px;
+    font-weight: 500;
+    letter-spacing: .07em;
+    font-variant-numeric: tabular-nums;
+    text-transform: uppercase;
+  }
+  .chip::after {
+    content: "Copied";
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    font-size: 9.5px;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    opacity: 0;
+    transition: opacity .2s ease;
+  }
+  .swatch.is-copied .chip::after { opacity: .75; }
+
+  .swatch__body {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    padding: 18px 16px 20px;
+    border-top: 1px solid var(--line);
+  }
+  .swatch__name {
+    font-size: 14.5px;
+    font-weight: 500;
+    letter-spacing: -.005em;
+  }
+  .swatch__use {
+    color: var(--clay);
+    font-size: 12.5px;
+    line-height: 1.5;
+  }
+  .swatch__token {
+    margin-top: 3px;
+    color: var(--clay);
+    font-size: 10.5px;
+    letter-spacing: .05em;
+    font-variant-numeric: tabular-nums;
+    opacity: .8;
+  }
+
+  /* ---- Typefaces ---- */
+  .faces {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1px;
+    margin-top: 30px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+  .face {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 30px 28px 34px;
+    background: var(--paper);
+  }
+  .face__role { color: var(--sage); }
+  .face__specimen {
+    margin: 4px 0 0;
+    font: 300 52px/1 var(--display);
+    letter-spacing: -.03em;
+  }
+  .face--body .face__specimen {
+    font: 400 40px/1.1 var(--body);
+    letter-spacing: -.02em;
+  }
+  .face__name {
+    font-size: 15px;
+    font-weight: 500;
+  }
+  .face__note {
+    max-width: 40ch;
+    color: var(--clay);
+    font-size: 12.5px;
+    line-height: 1.55;
+  }
+  .face__sample {
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+    color: var(--ink-soft);
+    font-size: 13.5px;
+  }
+  .face--display .face__sample {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 17px;
+  }
+
+  /* ---- Contrast table ---- */
+  .table-wrap {
+    overflow-x: auto;
+    margin-top: 30px;
+    border: 1px solid var(--line);
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+  }
+  thead th {
+    padding: 14px 18px;
+    background: var(--sand);
+    border-bottom: 1px solid var(--line);
+    color: var(--clay);
+    font: 600 9.5px/1 var(--body);
+    letter-spacing: .13em;
+    text-transform: uppercase;
+    text-align: left;
+    white-space: nowrap;
+  }
+  tbody td {
+    padding: 15px 18px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: middle;
+  }
+  tbody tr:last-child td { border-bottom: 0; }
+  .pair {
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
+    white-space: nowrap;
+  }
+  .pair i {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 28px;
+    border: 1px solid var(--line);
+    font-style: normal;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .ratio {
+    font-variant-numeric: tabular-nums;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .verdict {
+    display: inline-block;
+    padding: 4px 10px;
+    border: 1px solid currentColor;
+    border-radius: 2px;
+    font-size: 9.5px;
+    font-weight: 600;
+    letter-spacing: .11em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .verdict--pass { color: var(--sage); }
+  .verdict--watch { color: var(--clay-deep); }
+  .verdict--fail { color: #a4442e; }
+  .use-note { color: var(--clay); }
+
+  /* ---- Callout ---- */
+  .callout {
+    display: grid;
+    grid-template-columns: 3px 1fr;
+    gap: 22px;
+    margin-top: 30px;
+    background: var(--sand);
+  }
+  .callout__rule { background: var(--gold); }
+  .callout__body { padding: 26px 28px 28px 6px; }
+  .callout h3 {
+    margin: 8px 0 10px;
+    font: 400 21px/1.2 var(--display);
+  }
+  .callout p {
+    max-width: var(--measure);
+    margin: 0 0 11px;
+    color: var(--ink-soft);
+    font-size: 14px;
+  }
+  .callout p:last-child { margin-bottom: 0; }
+  .callout b { color: var(--ink); font-weight: 500; }
+
+  footer {
+    margin-top: clamp(56px, 7vw, 88px);
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 14px;
+    color: var(--clay);
+    font-size: 11px;
+    letter-spacing: .11em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 720px) {
+    .masthead__meta, .section-head p { text-align: left; }
+    .section-head { flex-direction: column; gap: 12px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition-duration: .01ms !important; }
+  }
+</style>
+
+<div class="sheet">
+
+  <header class="masthead">
+    <div>
+      <p class="eyebrow">Aligned Within · Brand reference</p>
+      <h1>The colours of the practice.</h1>
+    </div>
+    <div class="masthead__meta">
+      <span><b>Sunlit Study</b> direction</span>
+      <span>Ellie Wheeler, PsyD</span>
+      <span>19 colours · 2 typefaces</span>
+    </div>
+  </header>
+
+  <p class="lede">
+    Every colour on the website comes from this list — there are no one-off values anywhere in the
+    build. The palette is deliberately narrow and warm: a paper ground, soft earth for reading,
+    and a single <em>gold</em> reserved for the moments that ask you to act. Click any swatch to copy its hex.
+  </p>
+
+  <section>
+    <div class="section-head">
+      <h2>Grounds</h2>
+      <p>The backgrounds. Four warm neutrals, lightest to deepest, used to separate one section from the next without hard edges.</p>
+    </div>
+    <div class="swatches" id="grounds"></div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>Rules &amp; hairlines</h2>
+      <p>The thin dividing lines between sections and cards. Never used for text or fills.</p>
+    </div>
+    <div class="swatches" id="rules"></div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>Type</h2>
+      <p>The reading colours. Full-strength ink for headings, progressively softer earth tones as text becomes secondary.</p>
+    </div>
+    <div class="swatches" id="type"></div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>Accents</h2>
+      <p>Used sparingly and with intent. Gold marks action; sage marks the small labels above each section.</p>
+    </div>
+    <div class="swatches" id="accents"></div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>Light and dark</h2>
+      <p>Two sections of the page sit on dark grounds. Accents need lighter versions of themselves there.</p>
+    </div>
+    <div class="callout">
+      <div class="callout__rule"></div>
+      <div class="callout__body">
+        <p class="eyebrow">Why there are two greens and two golds</p>
+        <h3>An accent that reads on cream disappears on brown.</h3>
+        <p>
+          The services band sits on a soft brown rather than cream. The everyday gold and
+          sage are too dark to read against it, so each has a pale counterpart —
+          <b>Sage Pale</b> and <b>Gold Pale</b> — used on any dark background. The colours
+          stay the same family; only the weight changes, so the section still reads as
+          green labels and gold numerals.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>Typefaces</h2>
+      <p>Two families carry the whole site. Both are self-hosted, so nothing is requested from an outside service as the page loads.</p>
+    </div>
+    <div class="faces">
+      <div class="face face--display">
+        <p class="eyebrow face__role">Display</p>
+        <p class="face__specimen">Aligned Within</p>
+        <span class="face__name">Fraunces — Light 300 &amp; Regular 400</span>
+        <p class="face__note">Headlines, section titles, and pull quotes. Set light and large, with tight letter-spacing, so it reads as warm rather than formal.</p>
+        <p class="face__sample">Therapy can be both a place of refuge and a place where new ways of living begin.</p>
+      </div>
+      <div class="face face--body">
+        <p class="eyebrow face__role">Body &amp; labels</p>
+        <p class="face__specimen">Reading text</p>
+        <span class="face__name">Inter — Regular 400 to Semibold 600</span>
+        <p class="face__note">Paragraphs, navigation, buttons, and form fields. Semibold with wide letter-spacing for the small uppercase labels.</p>
+        <p class="face__sample">You may know something needs to change without knowing where to begin.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>Legibility</h2>
+      <p>How each text colour performs against its background, measured to the WCAG 2.1 accessibility standard.</p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Combination</th>
+            <th scope="col">Where it appears</th>
+            <th scope="col">Contrast</th>
+            <th scope="col">Rating</th>
+          </tr>
+        </thead>
+        <tbody id="contrast"></tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <div class="callout__rule"></div>
+      <div class="callout__body">
+        <p class="eyebrow">Still to resolve</p>
+        <h3>The sage section labels need to darken.</h3>
+        <p>
+          Sage is the small uppercase label above each section — <b>Services</b>,
+          <b>What I help with</b>, and so on. On the pale backgrounds it sits just under
+          the legibility standard, and where it falls on the gold consultation band it is
+          well under. The reassurance line beneath the consultation form is marginal on
+          that same gold.
+        </p>
+        <p>
+          Everything else clears comfortably, including all body copy, both dark bands and
+          every button. Deepening the sage is a contained change — it touches those labels
+          and nothing else — and is worth doing before launch, since accessibility
+          standards apply to health practice websites.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Aligned Within · Sunlit Study</span>
+    <span>Design reference · August 2026</span>
+  </footer>
+</div>
+
+<script>
+  var GROUPS = {
+    grounds: [
+      ['Paper', '#fdfbf6', 'The main page background, behind almost everything.', '--color-paper'],
+      ['Shell', '#f8f5ee', 'A half-step deeper, framing the page on wide screens.', '--color-shell'],
+      ['Sand', '#f7f1e6', 'Alternate section bands and the warm glow behind the hero.', '--color-sand'],
+      ['Dune', '#eae0d0', 'The deepest ground — image placeholders and inset panels.', '--color-dune']
+    ],
+    rules: [
+      ['Line', '#d9cebf', 'Standard divider between sections and cards.', '--color-line'],
+      ['Line Soft', '#cbbfae', 'A lighter rule inside lists, where a full line would be too loud.', '--color-line-soft']
+    ],
+    type: [
+      ['Ink', '#3e3428', 'Headlines and primary text. Also the footer background.', '--color-ink'],
+      ['Ink Soft', '#6e5f4e', 'Body paragraphs and longer reading passages.', '--color-ink-soft'],
+      ['Clay', '#8a6f5b', 'Supporting text, captions, and the practice sub-title.', '--color-clay'],
+      ['Clay Mid', '#796958', 'Biography paragraphs in the About section.', '--color-clay-mid'],
+      ['Clay Deep', '#5f4937', 'Reassurance text beneath the consultation form.', '--color-clay-deep']
+    ],
+    accents: [
+      ['Gold', '#dfa35b', 'The action colour — primary buttons and the brand mark.', '--color-gold'],
+      ['Gold Bright', '#e7b374', 'The lift when a gold button is hovered.', '--color-gold-bright'],
+      ['Gold Soft', '#efc98a', 'Focus rings on form fields and the hero light wash.', '--color-gold-soft'],
+      ['Sage', '#6c8c84', 'Small uppercase labels above each section.', '--color-sage'],
+      ['Sage Soft', '#9db2ad', 'Earlier variant of the label green, kept for reference.', '--color-sage-soft'],
+      ['Sage Pale', '#cfe4dc', 'Section labels wherever they sit on a dark band.', '--color-sage-pale'],
+      ['Gold Pale', '#f7e0b0', 'Gold accents wherever they sit on a dark band.', '--color-gold-pale'],
+      ['Shadow', '#754e25', 'A warm drop shadow under buttons — never seen directly.', '--color-shadow']
+    ]
+  };
+
+  var CONTRAST = [
+    ['Ink', '#3e3428', 'Paper', '#fdfbf6', 'Headlines and section titles', '11.76', 'Excellent', 'pass'],
+    ['Paper', '#fdfbf6', 'Ink', '#3e3428', 'Footer wordmark on the dark band', '11.76', 'Excellent', 'pass'],
+    ['Paper 68%', '#c0bbb4', 'Ink', '#3e3428', 'Footer links', '6.38', 'Passes', 'pass'],
+    ['Ink Soft', '#6e5f4e', 'Paper', '#fdfbf6', 'Body paragraphs', '5.96', 'Passes', 'pass'],
+    ['Paper', '#fdfbf6', 'Ink Soft', '#6e5f4e', 'Headings on the services band', '5.96', 'Passes', 'pass'],
+    ['Ink', '#3e3428', 'Gold', '#dfa35b', 'Text on the gold buttons', '5.52', 'Passes', 'pass'],
+    ['Gold', '#dfa35b', 'Ink', '#3e3428', 'Footer link hover', '5.52', 'Passes', 'pass'],
+    ['Clay Mid', '#796958', 'Paper', '#fdfbf6', 'About-section paragraphs', '5.11', 'Passes', 'pass'],
+    ['Paper 56%', '#a9a39b', 'Ink', '#3e3428', 'Footer column labels', '4.86', 'Passes', 'pass'],
+    ['Gold Pale', '#f7e0b0', 'Ink Soft', '#6e5f4e', 'Service numerals on the dark band', '4.76', 'Passes', 'pass'],
+    ['Sage Pale', '#cfe4dc', 'Ink Soft', '#6e5f4e', 'Section label on the dark band', '4.63', 'Passes', 'pass'],
+    ['Clay', '#8a6f5b', 'Paper', '#fdfbf6', 'Captions and supporting text', '4.51', 'Passes', 'pass'],
+    ['Sage', '#6c8c84', 'Paper', '#fdfbf6', 'Section labels', '3.55', 'Below standard', 'watch'],
+    ['Sage', '#6c8c84', 'Sand', '#f7f1e6', 'Section labels on the sand bands', '3.26', 'Below standard', 'watch'],
+    ['Clay Deep', '#5f4937', 'Gold', '#dfa35b', 'Text under the consultation form', '3.82', 'Below standard', 'watch'],
+    ['Sage', '#6c8c84', 'Gold', '#dfa35b', 'Section label on the gold band', '1.67', 'Below standard', 'fail']
+  ];
+
+  // Pick ink or paper for text sitting on a given colour, whichever reads better.
+  function readableOn(hex) {
+    var c = [1, 3, 5].map(function (i) { return parseInt(hex.substr(i, 2), 16) / 255; })
+      .map(function (v) { return v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); });
+    var L = 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
+    return L > 0.42 ? '#3e3428' : '#fdfbf6';
+  }
+
+  Object.keys(GROUPS).forEach(function (key) {
+    var host = document.getElementById(key);
+    if (!host) return;
+    GROUPS[key].forEach(function (row) {
+      var name = row[0], hex = row[1], use = row[2], token = row[3];
+      var fg = readableOn(hex);
+      var el = document.createElement('button');
+      el.type = 'button';
+      el.className = 'swatch';
+      el.setAttribute('aria-label', 'Copy ' + name + ', ' + hex.toUpperCase());
+      el.innerHTML =
+        '<span class="chip" style="background:' + hex + ';color:' + fg + '">' +
+          '<span>' + hex.toUpperCase() + '</span>' +
+        '</span>' +
+        '<span class="swatch__body">' +
+          '<span class="swatch__name"></span>' +
+          '<span class="swatch__use"></span>' +
+          '<span class="swatch__token"></span>' +
+        '</span>';
+      el.querySelector('.swatch__name').textContent = name;
+      el.querySelector('.swatch__use').textContent = use;
+      el.querySelector('.swatch__token').textContent = token;
+      el.addEventListener('click', function () {
+        var done = function () {
+          el.classList.add('is-copied');
+          setTimeout(function () { el.classList.remove('is-copied'); }, 1200);
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(hex.toUpperCase()).then(done, function () {});
+        }
+      });
+      host.appendChild(el);
+    });
+  });
+
+  var tbody = document.getElementById('contrast');
+  CONTRAST.forEach(function (row) {
+    var fgName = row[0], fgHex = row[1], bgName = row[2], bgHex = row[3];
+    var where = row[4], ratio = row[5], verdict = row[6], state = row[7];
+    var tr = document.createElement('tr');
+    tr.innerHTML =
+      '<td><span class="pair">' +
+        '<i style="background:' + bgHex + ';color:' + fgHex + '">Aa</i>' +
+        '<span class="label"></span>' +
+      '</span></td>' +
+      '<td class="use-note"></td>' +
+      '<td class="ratio">' + ratio + ':1</td>' +
+      '<td><span class="verdict verdict--' + state + '"></span></td>';
+    tr.querySelector('.label').textContent = fgName + ' on ' + bgName;
+    tr.querySelector('.use-note').textContent = where;
+    tr.querySelector('.verdict').textContent = verdict;
+    tbody.appendChild(tr);
+  });
+</script>
