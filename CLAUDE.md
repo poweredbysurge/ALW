@@ -110,18 +110,20 @@ darkening sage, which is a client decision that has not been made.
 | Section labels, consult band | `sage` on `gold` | 1.67:1 | 4.5:1 |
 | Consult reassurance text | `clay-deep` on `gold` | 3.82:1 | 4.5:1 |
 
-Everything on the dark bands and all body copy passes. A deeper sage that clears
-4.5:1 on all three light grounds was explored in the Meadow variant
-(`/preview/meadow`) and not adopted.
+Everything on the dark bands and all body copy passes. A deeper, greener sage
+that clears 4.5:1 on all three light grounds was explored in a "Meadow" variant
+and not adopted; it lives in the initial commit if it is ever wanted back.
 
 ---
 
 ## Routes
 
-- `/` — the live homepage. Ships no preview chrome.
-- `/preview/[variant]` — design review routes, `noindex`. `sunlit` (live build),
-  `hero-portrait` (Ellie in the hero), `meadow` (rejected palette variant).
-  Both render the same `app/_components/home.tsx`, so markup never diverges.
+- `/` — the homepage, and currently the only page.
+- `/robots.txt`, `/sitemap.xml` — generated from `app/robots.ts` and
+  `app/sitemap.ts`; both read `NEXT_PUBLIC_SITE_URL`.
+
+The design-review routes under `/preview` were removed once the palette and hero
+were settled. They are in the initial commit if a future review needs them.
 
 `docs/palette.html` is the client-facing palette reference — open it directly or
 publish it. Keep it in step with the `@theme` block when tokens change.
@@ -135,5 +137,7 @@ publish it. Keep it in step with the `@theme` block when tokens change.
   HIPAA-appropriate intake endpoint. See the TODO in `app/experience.tsx`.
 - Set `NEXT_PUBLIC_SITE_URL` in Vercel — it backs `metadataBase`, the canonical
   link, and OG tags.
-- The services band photo is still a remote Unsplash URL in `globals.css`.
+- **The services band photo is hotlinked from Unsplash** in `globals.css`. It
+  works, but it is a third-party dependency with no licence record for the
+  client. Replace it with a licensed local asset before launch.
 - Footer links to Privacy / Terms / Accessibility have no destination pages.

@@ -72,5 +72,5 @@ Security headers (HSTS, nosniff, frame options, referrer policy) are set in
 - **The consultation form does not submit anywhere.** It renders the success
   state client-side only; nothing is transmitted or stored. Needs a
   HIPAA-appropriate intake endpoint. See the TODO in `app/experience.tsx`.
-- Hero, services, and portrait images are CSS placeholders awaiting real photography.
+- The services band photo is hotlinked from Unsplash — replace with a licensed asset.
 - Footer links to Privacy / Terms / Accessibility have no destination pages yet.

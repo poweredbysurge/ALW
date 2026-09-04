@@ -15,7 +15,7 @@ const nav = [
   ['Reflections', '#footer'],
 ];
 
-export function Home({ heroPortrait = true }: { heroPortrait?: boolean }) {
+export function Home() {
   return (
     <main className="site sunlit">
       <Experience />
@@ -34,7 +34,7 @@ export function Home({ heroPortrait = true }: { heroPortrait?: boolean }) {
         <a className="button button--primary button--small" href="#consultation">Free consultation</a>
       </header>
 
-      <section className={`sunlit-hero${heroPortrait ? ' sunlit-hero--portrait' : ''}`} id="main-content">
+      <section className="sunlit-hero sunlit-hero--portrait" id="main-content">
         <div className="sunlit-hero__wash" aria-hidden="true" />
         <div className="sunlit-hero__ghost" aria-hidden="true"><SunMark /></div>
         <div className="sunlit-hero__copy">
@@ -52,22 +52,20 @@ export function Home({ heroPortrait = true }: { heroPortrait?: boolean }) {
             <a className="text-link" href="#treatments">Explore how I can help <span aria-hidden="true">↓</span></a>
           </div>
         </div>
-        {heroPortrait && (
-          <figure className="hero-portrait">
-            <Image
-              src="/ellie/ellie-hero-1300.jpg"
-              alt="Ellie Wheeler, PsyD, smiling in her La Jolla therapy office"
-              width={1300}
-              height={1997}
-              sizes="(max-width: 780px) 82vw, 38vw"
-              priority
-            />
-            <figcaption className="hero-portrait__id">
-              <b>Ellie Wheeler, PsyD</b>
-              <span>Clinical Psychologist</span>
-            </figcaption>
-          </figure>
-        )}
+        <figure className="hero-portrait">
+          <Image
+            src="/ellie/ellie-hero-1300.jpg"
+            alt="Ellie Wheeler, PsyD, smiling in her La Jolla therapy office"
+            width={1300}
+            height={1997}
+            sizes="(max-width: 780px) 82vw, 38vw"
+            priority
+          />
+          <figcaption className="hero-portrait__id">
+            <b>Ellie Wheeler, PsyD</b>
+            <span>Clinical Psychologist</span>
+          </figcaption>
+        </figure>
       </section>
 
       <section className="intro-statement section-pad" data-reveal>
