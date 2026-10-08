@@ -116,19 +116,19 @@ export function Home() {
         </div>
         <div className="modality-cards">
           <article data-reveal>
-            <i aria-hidden="true">P</i>
+            <i aria-hidden="true">1</i>
             <h3>Psychodynamic Therapy</h3>
             <p>We notice how earlier relationships and experiences live in the present, bringing the unseen into view so you can respond with greater freedom.</p>
             <span>Understand the roots</span>
           </article>
           <article data-reveal>
-            <i aria-hidden="true">A</i>
+            <i aria-hidden="true">2</i>
             <h3>Acceptance & Commitment Therapy</h3>
             <p>ACT helps you make room for difficult inner experiences while choosing actions grounded in what matters most to you.</p>
             <span>Live by your values</span>
           </article>
           <article data-reveal>
-            <i aria-hidden="true">E</i>
+            <i aria-hidden="true">3</i>
             <h3>Exposure & Response Prevention</h3>
             <p>ERP is a proven approach for OCD that helps you practice meeting uncertainty without returning to compulsions.</p>
             <span>Expand your life</span>

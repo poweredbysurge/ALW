@@ -152,7 +152,7 @@
   .modality-cards article { min-height: 360px; padding: 40px 4vw 36px 0; border-right: 1px solid var(--color-line); }
   .modality-cards article + article { padding-left: 4vw; }
   .modality-cards article:last-child { padding-right: 0; border-right: 0; }
-  .modality-cards i { display: grid; place-items: center; width: 40px; height: 40px; margin-bottom: 72px; border: 1px solid var(--color-gold); border-radius: 50%; color: var(--color-gold); font: italic 300 18px var(--font-display); }
+  .modality-cards i { display: grid; place-items: center; width: 40px; height: 40px; margin-bottom: 72px; border: 1px solid var(--color-gold); border-radius: 50%; color: var(--color-gold); font: 400 17px/1 var(--font-display); font-variant-numeric: lining-nums tabular-nums; font-style: normal; }
   .modality-cards h3 { min-height: 58px; margin-bottom: 20px; font: 400 26px/1.15 var(--font-display); }
   .modality-cards p { min-height: 110px; color: var(--color-clay); font-size: 16px; }
   .modality-cards > article > span { color: var(--color-sage); font-size: 11px; letter-spacing: .13em; text-transform: uppercase; }
