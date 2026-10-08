@@ -9,10 +9,9 @@ const nav = [
   ['Treatments', '#treatments'],
   ['Services', '#services'],
   ['Modalities', '#modalities'],
-  ['Fees & Insurance', '#consultation'],
+  ['Fees & Insurance', '#fees'],
   ['FAQ', '#faq'],
   ['Contact', '#consultation'],
-  ['Reflections', '#footer'],
 ];
 
 export function Home() {
@@ -182,6 +181,56 @@ export function Home() {
         <div data-reveal><ConsultationForm /></div>
       </section>
 
+      <section className="sunlit-fees section-pad" id="fees">
+        <div className="section-heading" data-reveal>
+          <p className="eyebrow">Fees &amp; insurance</p>
+          <h2>Rates</h2>
+          <p>Straightforward pricing, shared up front, so cost is never the reason you hesitate to reach out.</p>
+        </div>
+
+        <div className="fees-body">
+          <dl className="rate-list" data-reveal>
+            <div className="rate-row">
+              <dt>
+                <span className="rate-name">Complimentary consultation</span>
+                <span className="rate-length">15 minutes</span>
+              </dt>
+              <dd>Free</dd>
+            </div>
+            <div className="rate-row">
+              <dt>
+                <span className="rate-name">Individual therapy session</span>
+                <span className="rate-length">55 minutes</span>
+              </dt>
+              <dd>$250</dd>
+            </div>
+          </dl>
+
+          <div className="insurance" data-reveal>
+            <h3>Insurance</h3>
+            <p>Aligned Within will be accepting coverage from these providers soon.</p>
+            <ul className="insurance-list">
+              <li className="is-dated">
+                <span className="provider">Aetna</span>
+                <span className="status">From October 29</span>
+              </li>
+              <li>
+                <span className="provider">United Healthcare</span>
+                <span className="status">Coming soon</span>
+              </li>
+              <li>
+                <span className="provider">Blue Shield of California</span>
+                <span className="status">Coming soon</span>
+              </li>
+              <li>
+                <span className="provider">Blue Promise California (Medical)</span>
+                <span className="status">Coming soon</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
       <section className="sunlit-faq section-pad" id="faq">
         <div className="section-heading" data-reveal>
           <p className="eyebrow">Common questions</p>
@@ -199,7 +248,7 @@ export function Home() {
         <div className="footer-brand"><SunMark /><h2>Aligned Within</h2><p>Ellie Wheeler, Psy.D.<br />Clinical Psychologist</p></div>
         <div><p className="footer-label">Practice</p><a href="#about">About Ellie</a><a href="#treatments">Treatments</a><a href="#modalities">Modalities</a><a href="#services">Services</a></div>
         <div><p className="footer-label">Visit</p><p>Private office<br />San Diego, California</p><p>Telehealth throughout California</p></div>
-        <div><p className="footer-label">Begin</p><a href="#consultation">Free consultation</a><a href="#faq">Frequently asked questions</a><a href="#footer">Reflections</a></div>
+        <div><p className="footer-label">Begin</p><a href="#consultation">Free consultation</a><a href="#faq">Frequently asked questions</a></div>
         <div className="footer-bottom"><span>© 2026 Aligned Within Psychology. All rights reserved.</span><span>Privacy · Terms · Accessibility</span><span>Therapy is not emergency care.</span></div>
       </footer>
     </main>

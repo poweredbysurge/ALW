@@ -371,6 +371,110 @@
   .footer-brand .sun-mark__art { animation: sun-settle 1.6s var(--ease-settle) both; }
 }
 
+/* ---------------------------------------------------------------------------
+   Fees & insurance.
+   Sits on paper between the gold consultation band and the sand FAQ, so the
+   three sections alternate rather than running together. Prices use lining
+   tabular figures so the column aligns on the decimal.
+--------------------------------------------------------------------------- */
+@layer components {
+  .sunlit-fees {
+    display: grid;
+    grid-template-columns: .72fr 1.28fr;
+    gap: 10vw;
+    padding-top: 140px;
+    padding-bottom: 150px;
+    background: var(--color-paper);
+  }
+  .sunlit-fees .section-heading h2 { margin-bottom: 22px; }
+  .fees-body { display: flex; flex-direction: column; gap: 62px; }
+
+  /* -- Rates ---------------------------------------------------------------- */
+  .rate-list { margin: 0; display: flex; flex-direction: column; }
+  .rate-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: baseline;
+    gap: 24px;
+    padding: 26px 0;
+    border-top: 1px solid var(--color-line);
+  }
+  .rate-row:last-child { border-bottom: 1px solid var(--color-line); }
+  .rate-row dt { display: flex; flex-direction: column; gap: 7px; }
+  .rate-name { font: 400 22px/1.2 var(--font-display); color: var(--color-ink); }
+  .rate-length {
+    color: var(--color-clay);
+    font: 600 11px/1 var(--font-body);
+    letter-spacing: .13em;
+    text-transform: uppercase;
+  }
+  .rate-row dd {
+    margin: 0;
+    color: var(--color-ink);
+    font: 300 32px/1 var(--font-display);
+    font-variant-numeric: lining-nums tabular-nums;
+    letter-spacing: -.02em;
+  }
+
+  /* -- Insurance ------------------------------------------------------------ */
+  .insurance h3 { margin: 0 0 10px; font: 400 22px/1.2 var(--font-display); }
+  .insurance > p {
+    max-width: 52ch;
+    margin: 0 0 26px;
+    color: var(--color-ink-soft);
+    font-size: 16px;
+  }
+  .insurance-list { margin: 0; padding: 0; list-style: none; }
+  .insurance-list li {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 20px;
+    padding: 17px 0;
+    border-top: 1px solid var(--color-line-soft);
+  }
+  .insurance-list li:last-child { border-bottom: 1px solid var(--color-line-soft); }
+  .provider {
+    position: relative;
+    padding-left: 22px;
+    color: var(--color-ink);
+    font-size: 16px;
+  }
+  /* A hollow marker for pending, filled gold for the one with a date. */
+  .provider::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 9px;
+    height: 9px;
+    margin-top: -4.5px;
+    border: 1px solid var(--color-gold);
+    border-radius: 50%;
+  }
+  .insurance-list .is-dated .provider::before { background: var(--color-gold); }
+  .status {
+    color: var(--color-clay);
+    font: 600 11px/1 var(--font-body);
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .insurance-list .is-dated .status { color: var(--color-ink-soft); }
+
+  @media (max-width: 1180px) {
+    .sunlit-fees { gap: 6vw; }
+  }
+  @media (max-width: 780px) {
+    .sunlit-fees { grid-template-columns: 1fr; gap: 40px; padding-top: 96px; padding-bottom: 104px; }
+    .fees-body { gap: 48px; }
+    .rate-row { grid-template-columns: 1fr; gap: 10px; }
+    .rate-row dd { font-size: 28px; }
+    .insurance-list li { grid-template-columns: 1fr; gap: 7px; }
+    .insurance-list .status { padding-left: 22px; }
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
