@@ -84,7 +84,7 @@ export function Home() {
           <article data-reveal style={{ '--delay': '0ms' } as React.CSSProperties}>
             <span>01</span>
             <h3>Trauma</h3>
-            <p>Trauma can leave you braced for danger long after the moment has passed. Trauma therapy offers a steady place to understand those patterns, build safety, and reconnect with parts of yourself that had to go quiet.</p>
+            <p>Trauma can leave you braced for danger, whether it came from one experience or unfolded over time. Trauma therapy offers a steady place to understand these patterns, build a sense of safety, and reconnect with parts of yourself that had to go quiet.</p>
             <a href="#consultation">Learn about trauma therapy <span aria-hidden="true">↗</span></a>
           </article>
           <article data-reveal style={{ '--delay': '90ms' } as React.CSSProperties}>
@@ -96,13 +96,13 @@ export function Home() {
           <article data-reveal style={{ '--delay': '180ms' } as React.CSSProperties}>
             <span>03</span>
             <h3>Identity development</h3>
-            <p>Sometimes the roles you have inherited stop feeling like who you are. Together, we can explore identity with curiosity and help your choices reflect what feels true—not simply what is expected.</p>
+            <p>Sometimes the roles, expectations, and identities we’ve carried can make it difficult to know what truly feels like you. Together, we can explore your identity, including gender, sexuality, values, and purpose, with curiosity and create a life that feels more authentic to who you are.</p>
             <a href="#consultation">Begin the conversation <span aria-hidden="true">↗</span></a>
           </article>
           <article data-reveal style={{ '--delay': '270ms' } as React.CSSProperties}>
             <span>04</span>
             <h3>Life transitions</h3>
-            <p>Divorce, recovery, college, and major change can unsettle your sense of self. Therapy creates space to grieve what is ending, find your footing, and move forward by your own values.</p>
+            <p>Relationship endings, disconnection, recovery, starting college, graduate school, or university, and other major changes can unsettle your sense of self. Therapy creates space to grieve what is ending, find your footing, and move forward by your own values.</p>
             <a href="#consultation">Find support through change <span aria-hidden="true">↗</span></a>
           </article>
         </div>
