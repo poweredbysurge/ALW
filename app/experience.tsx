@@ -3,6 +3,8 @@
 import { FormEvent, useEffect, useState } from 'react';
 
 const FALLBACK_EMAIL = 'Drelliewheeler@gmail.com';
+const PHONE_DISPLAY = '(619) 304-9955';
+const PHONE_HREF = 'tel:+16193049955';
 
 export function Experience() {
   useEffect(() => {
@@ -103,7 +105,8 @@ export function ConsultationForm({ compact = false }: { compact?: boolean }) {
       {status === 'error' && (
         <p className="form-error" role="alert">
           {error} You can also email{' '}
-          <a href={`mailto:${FALLBACK_EMAIL}`}>{FALLBACK_EMAIL}</a> directly.
+          <a href={`mailto:${FALLBACK_EMAIL}`}>{FALLBACK_EMAIL}</a> or call{' '}
+          <a href={PHONE_HREF}>{PHONE_DISPLAY}</a> directly.
         </p>
       )}
 

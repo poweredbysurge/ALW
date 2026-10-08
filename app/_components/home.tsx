@@ -177,6 +177,7 @@ export function Home() {
           <h2>Let’s see if this<br />feels like a fit.</h2>
           <p>A free consultation is a brief, low-pressure conversation. You can share what brings you here, ask questions about therapy, and get a sense of what it might be like to work together.</p>
           <div className="consult-reassurance"><SunMark /><span>No commitment.<br />Just a human conversation.</span></div>
+          <p className="consult-phone">Prefer to talk? Call <a href="tel:+16193049955">(619) 304-9955</a>.</p>
         </div>
         <div data-reveal><ConsultationForm /></div>
       </section>
@@ -247,7 +248,7 @@ export function Home() {
       <footer className="sunlit-footer" id="footer">
         <div className="footer-brand"><SunMark /><h2>Aligned Within</h2><p>Ellie Wheeler, Psy.D.<br />Clinical Psychologist</p></div>
         <div><p className="footer-label">Practice</p><a href="#about">About Ellie</a><a href="#treatments">Treatments</a><a href="#modalities">Modalities</a><a href="#services">Services</a></div>
-        <div><p className="footer-label">Visit</p><p>Private office<br />San Diego, California</p><p>Telehealth throughout California</p></div>
+        <div><p className="footer-label">Visit</p><p>Private office<br />San Diego, California</p><p>Telehealth throughout California</p><a href="tel:+16193049955">(619) 304-9955</a></div>
         <div><p className="footer-label">Begin</p><a href="#consultation">Free consultation</a><a href="#faq">Frequently asked questions</a></div>
         <div className="footer-bottom"><span>© 2026 Aligned Within Psychology. All rights reserved.</span><span>Privacy · Terms · Accessibility</span><span>Therapy is not emergency care.</span></div>
       </footer>
