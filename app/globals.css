@@ -114,6 +114,11 @@
   .faq-list summary span { font-size: 24px; font-weight: 300; transition: transform .25s ease; }
   .faq-list details[open] summary span { transform: rotate(45deg); }
   .faq-list details p { max-width: 680px; margin: -8px 0 28px; color: inherit; opacity: .72; font-size: 16px; }
+  /* The parent paragraph sets opacity, which composites the whole subtree, so
+     the link cannot be darker than the body text around it. The underline is
+     what distinguishes it, which is what WCAG 1.4.1 asks for anyway. */
+  .faq-list details p .faq-link { color: var(--color-ink); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; text-decoration-color: var(--color-gold); }
+  .faq-list details p .faq-link:hover { text-decoration-color: var(--color-ink); }
   .footer-label { margin-bottom: 22px !important; opacity: .56; font: 600 11px/1 var(--font-body) !important; letter-spacing: .14em; text-transform: uppercase; }
   .footer-brand h2 { margin: 14px 0 7px; font-weight: 400; }
   .footer-brand p { opacity: .65; font-size: 14px !important; line-height: 1.6 !important; }

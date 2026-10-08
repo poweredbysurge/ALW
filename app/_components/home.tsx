@@ -240,7 +240,7 @@ export function Home() {
         <div className="faq-list" data-reveal>
           <details><summary>How do I know if therapy is right for me?<span aria-hidden="true">+</span></summary><p>You do not need to be in crisis or have everything figured out. If something feels painful, repetitive, or out of alignment, a consultation can help you decide whether therapy feels useful now.</p></details>
           <details><summary>Do you offer in-person and online sessions?<span aria-hidden="true">+</span></summary><p>Yes. Ellie offers in-person therapy in San Diego and secure telehealth appointments for clients located throughout California.</p></details>
-          <details><summary>Do you accept insurance?<span aria-hidden="true">+</span></summary><p>Aligned Within is a private-pay practice. A superbill may be available for possible out-of-network reimbursement; coverage varies, so checking directly with your plan is recommended.</p></details>
+          <details><summary>Do you accept insurance?<span aria-hidden="true">+</span></summary><p>Aligned Within is a private practice and is currently private-pay. Insurance coverage is being added, beginning with Aetna. You can see each provider and its current status under <a className="faq-link" href="#fees">Fees &amp; Insurance</a>. In the meantime, a superbill may be available for possible out-of-network reimbursement. Coverage varies, so checking directly with your plan is recommended.</p></details>
         </div>
       </section>
 
