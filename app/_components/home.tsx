@@ -166,7 +166,7 @@ export function Home() {
           <h2>Warm, curious,<br />and deeply attentive.</h2>
           <p className="about-lede">I believe you make sense in the context of what you have lived through.</p>
           <p>My role is not to tell you who to be. It is to offer a thoughtful relationship where we can understand what is happening beneath the surface, loosen what no longer serves you, and help your outer life feel more aligned with your inner one.</p>
-          <p>I work especially well with young adults, college-age individuals, and people navigating trauma, OCD, recovery, divorce, identity exploration, or other seasons of profound change.</p>
+          <p>I work especially well with young adults, college-age individuals, and people navigating trauma, OCD, anxiety, depression, recovery, identity exploration, or other seasons of profound change.</p>
           <a className="text-link text-link--rule" href="#consultation">More about me <span aria-hidden="true">↗</span></a>
         </div>
         <blockquote data-reveal>“Therapy can be both a place of refuge and a place where new ways of living begin.”</blockquote>
