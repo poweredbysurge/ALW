@@ -1,12 +1,12 @@
 /**
- * The Aligned Within sun mark — the supplied AW-Logomark.svg, structure intact.
+ * The Aligned Within sun mark: the supplied AW-Logomark.svg, structure intact.
  *
  * Only one thing is changed from the export: the baked-in `fill:rgb(35,31,32)`
  * is removed so the mark takes `currentColor`, letting every placement colour it
  * from the token set by setting `color`. All of the export's nested transforms
  * are preserved verbatim.
  *
- * `fill` is a presentation ATTRIBUTE rather than a CSS rule on purpose — if the
+ * `fill` is a presentation ATTRIBUTE rather than a CSS rule on purpose. If the
  * stylesheet is ever stale or missing, the mark inherits the surrounding text
  * colour instead of falling back to SVG's default black.
  */

@@ -1,13 +1,13 @@
 @import 'tailwindcss';
 
 /* ---------------------------------------------------------------------------
-   Aligned Within — design tokens.
+   Aligned Within : design tokens.
    Everything here becomes a Tailwind utility: --color-gold -> bg-gold /
    text-gold / border-gold, --font-display -> font-display, and so on.
    Change a value once here and it propagates through the whole site.
 --------------------------------------------------------------------------- */
 @theme {
-  /* Grounds — lightest to warmest */
+  /* Grounds : lightest to warmest */
   --color-paper: #fdfbf6;
   --color-shell: #f8f5ee;
   --color-sand: #f7f1e6;
@@ -31,14 +31,14 @@
   --color-sage: #6c8c84;
   --color-sage-soft: #9db2ad;
 
-  /* Pale accents — the versions to use on any dark ground (ink or ink-soft).
+  /* Pale accents : the versions to use on any dark ground (ink or ink-soft).
      Full-strength gold and sage cannot clear 4.5:1 on ink-soft; these do,
      on both dark grounds, so they are the single answer for dark bands. */
   --color-sage-pale: #cfe4dc;
   --color-gold-pale: #f7e0b0;
   --color-shadow: #754e25;
 
-  /* Typefaces — loaded and self-hosted via next/font in app/layout.tsx */
+  /* Typefaces : loaded and self-hosted via next/font in app/layout.tsx */
   --font-display: var(--font-fraunces), Georgia, serif;
   --font-body: var(--font-inter), system-ui, sans-serif;
 
@@ -121,7 +121,7 @@
   .footer-bottom span:nth-child(2) { text-align: center; }
   .footer-bottom span:last-child { text-align: right; }
 
-  /* Direction 01 — Sunlit Study */
+  /* Direction 01 : Sunlit Study */
   .sunlit { background: var(--color-paper); color: var(--color-ink); font-family: var(--font-body); }
   .sunlit-hero { position: relative; min-height: 820px; display: grid; grid-template-columns: 7fr 3fr; padding: 115px var(--pad) 92px; overflow: hidden; }
   .sunlit-hero__wash { position: absolute; inset: 0; background: radial-gradient(circle at 80% 32%, color-mix(in srgb, var(--color-gold-soft) 48%, transparent), transparent 30%), linear-gradient(130deg, var(--color-paper) 36%, color-mix(in srgb, var(--color-sand) 75%, transparent) 70%, color-mix(in srgb, var(--color-gold) 15%, transparent)); background-size: 115% 115%; animation: changing-light 20s ease-in-out infinite alternate; }
@@ -238,7 +238,7 @@
    Ellie sits in the right of the hero, inside the existing composition rather
    than on top of it: the ring mark and the gold wash stay where they are, and
    the portrait's edges are feathered with a mask so the cream wall behind her
-   dissolves into the cream page. No cut-out needed — the grounds already match.
+   dissolves into the cream page. No cut-out needed : the grounds already match.
 --------------------------------------------------------------------------- */
 @layer components {
   .sunlit-hero--portrait { grid-template-columns: 1.1fr .9fr; align-items: center; }
@@ -256,7 +256,7 @@
   }
 
   /* Name and title sit on the paper directly beneath the feathered edge, where
-     the portrait has already dissolved — so they read as a caption, not a
+     the portrait has already dissolved : so they read as a caption, not a
      label pasted over the photograph. */
   .hero-portrait__id {
     display: flex;
@@ -351,11 +351,11 @@
 
   /* -- Hero backdrop: this is the light in the scene, so it turns on a very
         long cycle and breathes. Slow enough to read as atmosphere. --------- */
-  /* Backdrop only — held still, so it reads as part of the scene. */
+  /* Backdrop only : held still, so it reads as part of the scene. */
   .sunlit-hero__ghost .sun-mark { width: 340px; height: 340px; }
 
   /* -- Consultation band: sits on gold, so it inks up, and settles into place
-        when the section is reached — a small moment at the point of asking. */
+        when the section is reached : a small moment at the point of asking. */
   .consult-reassurance .sun-mark { width: 46px; height: 46px; color: var(--color-ink); }
   .consult-reassurance .sun-mark__art { opacity: 0; }
   [data-reveal].is-visible .consult-reassurance .sun-mark__art {

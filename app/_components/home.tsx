@@ -71,7 +71,7 @@ export function Home() {
       <section className="intro-statement section-pad" data-reveal>
         <p className="eyebrow">A place to realign</p>
         <h2>You don’t need to become someone new.<br />You may need room to hear yourself again.</h2>
-        <p>As a San Diego psychologist, Ellie offers thoughtful, collaborative therapy for the moments when old ways of coping no longer fit—and something more honest is asking to emerge.</p>
+        <p>As a San Diego psychologist, Ellie offers thoughtful, collaborative therapy for the moments when old ways of coping no longer fit, and something more honest is asking to emerge.</p>
       </section>
 
       <section className="sunlit-treatments section-pad" id="treatments">

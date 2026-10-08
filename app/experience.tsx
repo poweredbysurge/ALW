@@ -27,7 +27,7 @@ export function ConsultationForm({ compact = false }: { compact?: boolean }) {
   const [sent, setSent] = useState(false);
 
   // TODO(launch): POST to a HIPAA-appropriate intake endpoint before going live.
-  // Nothing is transmitted or stored today — this only shows the success state.
+  // Nothing is transmitted or stored today; this only shows the success state.
   function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setSent(true);

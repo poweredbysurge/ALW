@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { Fraunces, Inter } from 'next/font/google';
 import './globals.css';
 
-// Self-hosted and preloaded by Next — no render-blocking request to Google,
+// Self-hosted and preloaded by Next: no render-blocking request to Google,
 // no layout shift. Exposed as CSS variables consumed by @theme in globals.css.
 const fraunces = Fraunces({
   subsets: ['latin'],
@@ -20,7 +20,7 @@ const inter = Inter({
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://alignedwithin.com';
 const TITLE = 'Aligned Within · Ellie Wheeler, Psy.D.';
 const DESCRIPTION =
-  'Clinical psychology in San Diego, California. Therapy for trauma, OCD, identity, and life transitions — in person and via telehealth across California.';
+  'Clinical psychology in San Diego, California. Therapy for trauma, OCD, identity, and life transitions, in person and via telehealth across California.';
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     siteName: 'Aligned Within',
     title: TITLE,
     description: DESCRIPTION,
-    images: [{ url: '/og.png', width: 1792, height: 932, alt: 'Aligned Within — Nature meets calm therapy.' }],
+    images: [{ url: '/og.png', width: 1792, height: 932, alt: 'Aligned Within. Nature meets calm therapy.' }],
   },
   twitter: {
     card: 'summary_large_image',

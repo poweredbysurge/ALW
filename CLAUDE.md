@@ -96,6 +96,14 @@ request and trips `@next/next/no-page-custom-font`.
 
 5. **Images go through `next/image`.** Portraits live in `public/ellie/`.
 
+6. **Never use an em dash (—) in copy.** This is a hard client rule and it
+   covers everything a visitor or a search engine can see: page text, headings,
+   link labels, form text, alt text, and the `title`/`description`/OpenGraph
+   metadata. Use a comma, a colon, or a second sentence instead. The repo is
+   currently clean of em dashes under `app/`, including comments, so
+   `npm run lint:dashes` is a meaningful check rather than a noisy one.
+   An en dash (–) in a numeric range is fine.
+
 ---
 
 ## Known accessibility gaps
