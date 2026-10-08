@@ -26,7 +26,7 @@ export function Home() {
           <span className="site-brand__mark">
             <SunMark title="Aligned Within" />
           </span>
-          <span><b>Aligned Within</b><small>Ellie Wheeler, PsyD</small></span>
+          <span><b>Aligned Within</b><small>Ellie Wheeler, Psy.D.</small></span>
         </a>
         <nav aria-label="Primary navigation">
           {nav.map(([label, href]) => <a key={label} href={href}>{label}</a>)}
@@ -38,7 +38,7 @@ export function Home() {
         <div className="sunlit-hero__wash" aria-hidden="true" />
         <div className="sunlit-hero__ghost" aria-hidden="true"><SunMark /></div>
         <div className="sunlit-hero__copy">
-          <p className="eyebrow hero-line hero-line--1">Clinical psychology · La Jolla, California</p>
+          <p className="eyebrow hero-line hero-line--1">Clinical psychology · San Diego, California</p>
           <h1>
             <span className="hero-line hero-line--2">Do you feel like something</span>
             <span className="hero-line hero-line--3">in your life is <em>out of alignment?</em></span>
@@ -55,14 +55,14 @@ export function Home() {
         <figure className="hero-portrait">
           <Image
             src="/ellie/ellie-hero-1300.jpg"
-            alt="Ellie Wheeler, PsyD, smiling in her La Jolla therapy office"
+            alt="Ellie Wheeler, Psy.D., smiling in her San Diego therapy office"
             width={1300}
             height={1997}
             sizes="(max-width: 780px) 82vw, 38vw"
             priority
           />
           <figcaption className="hero-portrait__id">
-            <b>Ellie Wheeler, PsyD</b>
+            <b>Ellie Wheeler, Psy.D.</b>
             <span>Clinical Psychologist</span>
           </figcaption>
         </figure>
@@ -71,7 +71,7 @@ export function Home() {
       <section className="intro-statement section-pad" data-reveal>
         <p className="eyebrow">A place to realign</p>
         <h2>You don’t need to become someone new.<br />You may need room to hear yourself again.</h2>
-        <p>As a La Jolla psychologist, Ellie offers thoughtful, collaborative therapy for the moments when old ways of coping no longer fit—and something more honest is asking to emerge.</p>
+        <p>As a San Diego psychologist, Ellie offers thoughtful, collaborative therapy for the moments when old ways of coping no longer fit—and something more honest is asking to emerge.</p>
       </section>
 
       <section className="sunlit-treatments section-pad" id="treatments">
@@ -138,13 +138,13 @@ export function Home() {
 
       <section className="sunlit-services section-pad" id="services">
         <div className="services-photo" data-reveal>
-          <div className="image-label">La Jolla · California</div>
+          <div className="image-label">San Diego · California</div>
         </div>
         <div className="services-copy" data-reveal>
           <p className="eyebrow">Services</p>
           <h2>Therapy that meets you<br />where you are.</h2>
           <div className="service-row"><span>01</span><div><h3>Individual therapy</h3><p>One-to-one psychotherapy shaped around your needs, pace, and hopes for change.</p></div></div>
-          <div className="service-row"><span>02</span><div><h3>In-person in La Jolla</h3><p>A private, calming space for therapy in La Jolla and the greater San Diego area.</p></div></div>
+          <div className="service-row"><span>02</span><div><h3>In-person in San Diego</h3><p>A private, calming space for therapy in San Diego and the surrounding area.</p></div></div>
           <div className="service-row"><span>03</span><div><h3>Telehealth across California</h3><p>Secure video sessions for clients located anywhere in California.</p></div></div>
         </div>
       </section>
@@ -154,12 +154,12 @@ export function Home() {
           <Image
             className="portrait-photo"
             src="/ellie/ellie-about-1200.jpg"
-            alt="Ellie Wheeler, PsyD, seated in her La Jolla therapy office"
+            alt="Ellie Wheeler, Psy.D., seated in her San Diego therapy office"
             width={1200}
             height={1804}
             sizes="(max-width: 780px) 100vw, 34vw"
           />
-          <small>Clinical Psychologist · La Jolla, CA</small>
+          <small>Clinical Psychologist · San Diego, CA</small>
         </div>
         <div className="about-copy" data-reveal>
           <p className="eyebrow">Meet Ellie</p>
@@ -190,15 +190,15 @@ export function Home() {
         </div>
         <div className="faq-list" data-reveal>
           <details><summary>How do I know if therapy is right for me?<span aria-hidden="true">+</span></summary><p>You do not need to be in crisis or have everything figured out. If something feels painful, repetitive, or out of alignment, a consultation can help you decide whether therapy feels useful now.</p></details>
-          <details><summary>Do you offer in-person and online sessions?<span aria-hidden="true">+</span></summary><p>Yes. Ellie offers in-person therapy in La Jolla and secure telehealth appointments for clients located throughout California.</p></details>
+          <details><summary>Do you offer in-person and online sessions?<span aria-hidden="true">+</span></summary><p>Yes. Ellie offers in-person therapy in San Diego and secure telehealth appointments for clients located throughout California.</p></details>
           <details><summary>Do you accept insurance?<span aria-hidden="true">+</span></summary><p>Aligned Within is a private-pay practice. A superbill may be available for possible out-of-network reimbursement; coverage varies, so checking directly with your plan is recommended.</p></details>
         </div>
       </section>
 
       <footer className="sunlit-footer" id="footer">
-        <div className="footer-brand"><SunMark /><h2>Aligned Within</h2><p>Ellie Wheeler, PsyD<br />Clinical Psychologist</p></div>
+        <div className="footer-brand"><SunMark /><h2>Aligned Within</h2><p>Ellie Wheeler, Psy.D.<br />Clinical Psychologist</p></div>
         <div><p className="footer-label">Practice</p><a href="#about">About Ellie</a><a href="#treatments">Treatments</a><a href="#modalities">Modalities</a><a href="#services">Services</a></div>
-        <div><p className="footer-label">Visit</p><p>Private office<br />La Jolla, California</p><p>Telehealth throughout California</p></div>
+        <div><p className="footer-label">Visit</p><p>Private office<br />San Diego, California</p><p>Telehealth throughout California</p></div>
         <div><p className="footer-label">Begin</p><a href="#consultation">Free consultation</a><a href="#faq">Frequently asked questions</a><a href="#footer">Reflections</a></div>
         <div className="footer-bottom"><span>© 2026 Aligned Within Psychology. All rights reserved.</span><span>Privacy · Terms · Accessibility</span><span>Therapy is not emergency care.</span></div>
       </footer>

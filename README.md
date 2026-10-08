@@ -1,6 +1,6 @@
 # Aligned Within
 
-Marketing site for Ellie Wheeler, PsyD — clinical psychology in La Jolla, California.
+Marketing site for Ellie Wheeler, Psy.D. — clinical psychology in San Diego, California.
 Built on the **Sunlit Study** design direction approved in the 2026-08-29 client review.
 
 **Stack:** Next.js 16 (App Router) · Tailwind CSS v4 · TypeScript · deployed on Vercel.

@@ -18,9 +18,9 @@ const inter = Inter({
 });
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://alignedwithin.com';
-const TITLE = 'Aligned Within · Ellie Wheeler, PsyD';
+const TITLE = 'Aligned Within · Ellie Wheeler, Psy.D.';
 const DESCRIPTION =
-  'Clinical psychology in La Jolla, California. Therapy for trauma, OCD, identity, and life transitions — in person and via telehealth across California.';
+  'Clinical psychology in San Diego, California. Therapy for trauma, OCD, identity, and life transitions — in person and via telehealth across California.';
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

@@ -1,6 +1,6 @@
 # Aligned Within — project rules
 
-Marketing site for Ellie Wheeler, PsyD (clinical psychology, La Jolla, CA).
+Marketing site for Ellie Wheeler, Psy.D. (clinical psychology, San Diego, CA).
 Stack: **Next.js 16 App Router · Tailwind CSS v4 · TypeScript · Vercel.**
 
 Design direction is **Sunlit Study**, approved 2026-08-29. Do not introduce a
