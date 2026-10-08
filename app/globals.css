@@ -106,6 +106,21 @@
   .consult-form input::placeholder, .consult-form textarea::placeholder { color: currentColor; opacity: .48; }
   .consult-form input:focus, .consult-form textarea:focus { border-color: var(--color-gold); box-shadow: 0 2px 0 color-mix(in srgb, var(--color-gold-soft) 42%, transparent); }
   .form-submit { display: flex; align-items: center; gap: 26px; }
+  /* The honeypot must be unreachable by people but present for bots, so it is
+     moved off-canvas rather than display:none, which some bots skip. */
+  .form-honeypot { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  .form-error {
+    margin: 4px 0 0;
+    padding: 14px 16px;
+    border-left: 2px solid var(--color-clay-deep);
+    background: color-mix(in srgb, var(--color-clay) 10%, transparent);
+    color: var(--color-ink);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  .form-error a { color: var(--color-ink); text-decoration: underline; text-underline-offset: 3px; }
+  .consult-form button[disabled] { opacity: .62; cursor: progress; }
+  .consult-form input[disabled], .consult-form textarea[disabled] { opacity: .55; }
   .form-submit p { max-width: 250px; margin: 0; color: var(--color-clay); font-size: 13px; line-height: 1.55; }
   .faq-list details { border-top: 1px solid currentColor; }
   .faq-list details:last-of-type { border-bottom: 1px solid currentColor; }

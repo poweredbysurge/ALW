@@ -138,11 +138,41 @@ publish it. Keep it in step with the `@theme` block when tokens change.
 
 ---
 
+## Consultation form
+
+`app/api/contact/route.ts` posts to Resend over its REST API (fetch, no SDK)
+and emails `CONTACT_TO_EMAIL`, defaulting to Drelliewheeler@gmail.com, with
+`reply_to` set to the sender so a reply reaches them directly. The notification
+template is `app/_emails/inquiry.ts`; it is the one place hardcoded hex values
+are correct, because email clients do not support CSS custom properties.
+
+The route answers success **only** when Resend accepts the message. Keep it
+that way: on a therapy practice site a false success means someone believes a
+private note was delivered when nothing was sent.
+
+**Open question about sensitive information.** The form invites people to
+describe what they want support with, so submissions can carry health
+information. Two things to confirm before launch, neither of which is a code
+change:
+
+1. A consumer Gmail account is not covered by a HIPAA business associate
+   agreement. Google Workspace with a signed BAA is.
+2. Confirm directly with Resend whether a BAA is available on the plan in use.
+
+If a BAA is not in place on both legs, the options are to keep the form to
+contact details only and move the clinical conversation to a compliant intake
+tool, or to move the whole form to a platform that will sign one. Flag this to
+the client rather than deciding it here.
+
+---
+
 ## Before launch
 
-- **The consultation form does not submit anywhere.** It renders the success
-  state client-side only; nothing is transmitted or stored. Needs a
-  HIPAA-appropriate intake endpoint. See the TODO in `app/experience.tsx`.
+- **Set `RESEND_API_KEY` in Vercel.** Without it the form returns 503 and
+  shows an error; it never reports a false success.
+- **Verify a sending domain in Resend** and point `CONTACT_FROM_EMAIL` at it.
+  Until then `onboarding@resend.dev` works for testing only.
+- **Decide how consultation messages are handled.** See the note below.
 - Set `NEXT_PUBLIC_SITE_URL` in Vercel — it backs `metadataBase`, the canonical
   link, and OG tags.
 - **The services band photo is hotlinked from Unsplash** in `globals.css`. It
