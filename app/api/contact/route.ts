@@ -18,7 +18,12 @@ export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
 const TO = process.env.CONTACT_TO_EMAIL ?? 'ellie@alignedwithinpsych.com';
-const FROM = process.env.CONTACT_FROM_EMAIL ?? 'Aligned Within <onboarding@resend.dev>';
+// Envelope sender only. It sits on a Resend-verified domain so the message
+// is deliverable; replies reach the person who submitted the form, because
+// the request below sets reply_to.
+const FROM =
+  process.env.CONTACT_FROM_EMAIL ??
+  'Aligned Within <aligned-within@updates.thesurgeagency.com>';
 
 const LIMITS = { name: 120, email: 200, message: 4000 } as const;
 

@@ -146,6 +146,11 @@ and emails `CONTACT_TO_EMAIL`, defaulting to ellie@alignedwithinpsych.com, with
 template is `app/_emails/inquiry.ts`; it is the one place hardcoded hex values
 are correct, because email clients do not support CSS custom properties.
 
+`CONTACT_FROM_EMAIL` is only the envelope sender and must sit on a domain
+verified in Resend. It currently uses `updates.thesurgeagency.com`, the
+agency's own notification domain, because this is an internal alert rather
+than mail to a client's audience. It is not where replies go.
+
 The route answers success **only** when Resend accepts the message. Keep it
 that way: on a therapy practice site a false success means someone believes a
 private note was delivered when nothing was sent.
