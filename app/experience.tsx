@@ -2,7 +2,7 @@
 
 import { FormEvent, useEffect, useState } from 'react';
 
-const FALLBACK_EMAIL = 'Drelliewheeler@gmail.com';
+const FALLBACK_EMAIL = 'ellie@alignedwithinpsych.com';
 const PHONE_DISPLAY = '(619) 304-9955';
 const PHONE_HREF = 'tel:+16193049955';
 

@@ -17,7 +17,7 @@ import { inquiryHtml, inquirySubject, inquiryText } from '../../_emails/inquiry'
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
-const TO = process.env.CONTACT_TO_EMAIL ?? 'Drelliewheeler@gmail.com';
+const TO = process.env.CONTACT_TO_EMAIL ?? 'ellie@alignedwithinpsych.com';
 const FROM = process.env.CONTACT_FROM_EMAIL ?? 'Aligned Within <onboarding@resend.dev>';
 
 const LIMITS = { name: 120, email: 200, message: 4000 } as const;

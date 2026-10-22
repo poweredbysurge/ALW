@@ -141,7 +141,7 @@ publish it. Keep it in step with the `@theme` block when tokens change.
 ## Consultation form
 
 `app/api/contact/route.ts` posts to Resend over its REST API (fetch, no SDK)
-and emails `CONTACT_TO_EMAIL`, defaulting to Drelliewheeler@gmail.com, with
+and emails `CONTACT_TO_EMAIL`, defaulting to ellie@alignedwithinpsych.com, with
 `reply_to` set to the sender so a reply reaches them directly. The notification
 template is `app/_emails/inquiry.ts`; it is the one place hardcoded hex values
 are correct, because email clients do not support CSS custom properties.
@@ -155,9 +155,11 @@ describe what they want support with, so submissions can carry health
 information. Two things to confirm before launch, neither of which is a code
 change:
 
-1. A consumer Gmail account is not covered by a HIPAA business associate
-   agreement. Google Workspace with a signed BAA is.
+1. Confirm the mailbox is covered. alignedwithinpsych.com on Google Workspace
+   or Microsoft 365 can be covered by a signed BAA; a consumer account on a
+   free tier cannot, whatever the address looks like.
 2. Confirm directly with Resend whether a BAA is available on the plan in use.
+   Resend is the transit leg, and it holds message content in its logs.
 
 If a BAA is not in place on both legs, the options are to keep the form to
 contact details only and move the clinical conversation to a compliant intake
