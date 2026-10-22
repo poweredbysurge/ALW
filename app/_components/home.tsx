@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import Script from 'next/script';
 
 import { SunMark } from './sun-mark';
@@ -263,7 +264,7 @@ export function Home() {
             data-code="aHR0cHM6Ly93d3cucHN5Y2hvbG9neXRvZGF5LmNvbS9hcGkvdmVyaWZpZWQtc2VhbC9zZWFscy8xMC9wcm9maWxlLzE4MTcxNjg/Y2FsbGJhY2s9c3hjYWxsYmFjaw=="
           />
         </div>
-        <div className="footer-bottom"><span>© 2026 Aligned Within Psychology. All rights reserved.</span><span>Privacy · Terms · Accessibility</span><span>Therapy is not emergency care.</span></div>
+        <div className="footer-bottom"><span>© 2026 Aligned Within Psychology. All rights reserved.</span><span className="footer-legal-links"><Link href="/privacy">Privacy</Link><Link href="/terms">Terms</Link></span><span>Therapy is not emergency care.</span></div>
       </footer>
     </main>
   );

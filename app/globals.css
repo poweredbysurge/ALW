@@ -142,6 +142,7 @@
   .footer-brand p { opacity: .65; font-size: 14px !important; line-height: 1.6 !important; }
   .footer-bottom { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr 1fr; padding-top: 26px; border-top: 1px solid currentColor; font-size: 11px; letter-spacing: .04em; opacity: .58; }
   .footer-bottom span:nth-child(2) { text-align: center; }
+  .footer-legal-links { display: inline-flex; gap: 16px; justify-content: center; }
   .footer-bottom span:last-child { text-align: right; }
 
   /* Direction 01 : Sunlit Study */
@@ -518,6 +519,122 @@
     .rate-row dd { font-size: 28px; }
     .insurance-list li { grid-template-columns: 1fr; gap: 7px; }
     .insurance-list .status { padding-left: 22px; }
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Policy pages.
+   Read rather than scanned, and linked to by carriers and registrars, so the
+   measure is narrow, the hierarchy is plain, and nothing competes with text.
+--------------------------------------------------------------------------- */
+@layer components {
+  .legal { background: var(--color-paper); }
+  .legal-nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 26px var(--pad);
+    border-bottom: 1px solid var(--color-line);
+  }
+  .legal-body { max-width: 760px; padding-top: 72px; padding-bottom: 96px; }
+  .legal-body h1 {
+    margin: 16px 0 0;
+    font: 300 clamp(38px, 4.6vw, 58px)/1.04 var(--font-display);
+    letter-spacing: -.03em;
+  }
+  .legal-updated {
+    margin: 18px 0 0;
+    color: var(--color-clay);
+    font: 600 11px/1 var(--font-body);
+    letter-spacing: .13em;
+    text-transform: uppercase;
+  }
+  .legal-intro {
+    max-width: 62ch;
+    margin: 28px 0 0;
+    color: var(--color-ink-soft);
+    font-size: 18px;
+    line-height: 1.7;
+  }
+  .legal-body section { margin-top: 52px; }
+  .legal-body h2 {
+    margin: 0 0 16px;
+    font: 400 25px/1.25 var(--font-display);
+    letter-spacing: -.01em;
+  }
+  .legal-body p {
+    max-width: 68ch;
+    margin: 0 0 16px;
+    color: var(--color-ink-soft);
+    font-size: 16.5px;
+    line-height: 1.75;
+  }
+  .legal-body ul { max-width: 68ch; margin: 0 0 16px; padding-left: 0; list-style: none; }
+  .legal-body li {
+    position: relative;
+    margin-bottom: 13px;
+    padding-left: 24px;
+    color: var(--color-ink-soft);
+    font-size: 16.5px;
+    line-height: 1.75;
+  }
+  .legal-body li::before {
+    content: "";
+    position: absolute;
+    left: 2px;
+    top: 12px;
+    width: 7px;
+    height: 7px;
+    border: 1px solid var(--color-gold);
+    border-radius: 50%;
+  }
+  .legal-body b { color: var(--color-ink); font-weight: 500; }
+  .legal-body a { color: var(--color-ink); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--color-gold); }
+  .legal-body a:hover { text-decoration-color: var(--color-ink); }
+
+  /* The two paragraphs carriers require verbatim; set apart so they are easy
+     to find and hard to edit by accident. */
+  .legal-callout {
+    max-width: none !important;
+    margin-bottom: 14px !important;
+    padding: 18px 22px;
+    border-left: 2px solid var(--color-gold);
+    background: var(--color-sand);
+    color: var(--color-ink) !important;
+  }
+
+  .legal-urgent {
+    margin-top: 44px !important;
+    padding: 26px 28px;
+    border: 1px solid var(--color-clay);
+    background: color-mix(in srgb, var(--color-clay) 7%, transparent);
+  }
+  .legal-urgent h2 { margin-bottom: 12px; }
+  .legal-urgent p { margin-bottom: 0; color: var(--color-ink); }
+
+  .legal-footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px 7vw;
+    padding-top: 42px;
+    padding-bottom: 54px;
+    border-top: 1px solid var(--color-line);
+    background: var(--color-sand);
+  }
+  .legal-footer p, .legal-footer a {
+    display: block;
+    margin: 0 0 7px;
+    color: var(--color-ink-soft);
+    font-size: 14.5px;
+  }
+  .legal-footer a { color: var(--color-ink); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--color-line); }
+  .legal-footer__links { margin-left: auto; }
+
+  @media (max-width: 780px) {
+    .legal-body { padding-top: 48px; padding-bottom: 68px; }
+    .legal-footer__links { margin-left: 0; }
   }
 }
 
