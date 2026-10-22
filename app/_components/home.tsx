@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Script from 'next/script';
 
 import { SunMark } from './sun-mark';
 
@@ -61,7 +62,7 @@ export function Home() {
             priority
           />
           <figcaption className="hero-portrait__id">
-            <b>Ellie Wheeler, Psy.D.</b>
+            <b>Dr. Ellie Wheeler</b>
             <span>Clinical Psychologist</span>
           </figcaption>
         </figure>
@@ -161,7 +162,7 @@ export function Home() {
           <small>Clinical Psychologist · San Diego, CA</small>
         </div>
         <div className="about-copy" data-reveal>
-          <p className="eyebrow">Meet Ellie</p>
+          <p className="eyebrow">Meet Dr. Wheeler</p>
           <h2>Warm, curious,<br />and deeply attentive.</h2>
           <p className="about-lede">I believe you make sense in the context of what you have lived through.</p>
           <p>My role is not to tell you who to be. It is to offer a thoughtful relationship where we can understand what is happening beneath the surface, loosen what no longer serves you, and help your outer life feel more aligned with your inner one.</p>
@@ -203,7 +204,7 @@ export function Home() {
                 <span className="rate-name">Individual therapy session</span>
                 <span className="rate-length">55 minutes</span>
               </dt>
-              <dd>$250</dd>
+              <dd>$210</dd>
             </div>
           </dl>
 
@@ -241,15 +242,27 @@ export function Home() {
         <div className="faq-list" data-reveal>
           <details><summary>How do I know if therapy is right for me?<span aria-hidden="true">+</span></summary><p>You do not need to be in crisis or have everything figured out. If something feels painful, repetitive, or out of alignment, a consultation can help you decide whether therapy feels useful now.</p></details>
           <details><summary>Do you offer in-person and online sessions?<span aria-hidden="true">+</span></summary><p>Yes. Ellie offers in-person therapy in San Diego and secure telehealth appointments for clients located throughout California.</p></details>
-          <details><summary>Do you accept insurance?<span aria-hidden="true">+</span></summary><p>Aligned Within is a private practice and is currently private-pay. Insurance coverage is being added, beginning with Aetna. You can see each provider and its current status under <a className="faq-link" href="#fees">Fees &amp; Insurance</a>. In the meantime, a superbill may be available for possible out-of-network reimbursement. Coverage varies, so checking directly with your plan is recommended.</p></details>
+          <details><summary>Do you accept insurance?<span aria-hidden="true">+</span></summary><p>Aligned Within is currently a private-pay practice. Insurance coverage is being added, beginning with Aetna. You can see each provider and its current status under <a className="faq-link" href="#fees">Fees &amp; Insurance</a>. In the meantime, a superbill may be available for possible out-of-network reimbursement. Coverage varies, so checking directly with your plan is recommended.</p></details>
         </div>
       </section>
 
       <footer className="sunlit-footer" id="footer">
         <div className="footer-brand"><SunMark /><h2>Aligned Within</h2><p>Ellie Wheeler, Psy.D.<br />Clinical Psychologist</p></div>
         <div><p className="footer-label">Practice</p><a href="#about">About Ellie</a><a href="#treatments">Treatments</a><a href="#modalities">Modalities</a><a href="#services">Services</a></div>
-        <div><p className="footer-label">Visit</p><p>Private office<br />San Diego, California</p><p>Telehealth throughout California</p><a href="tel:+16193049955">(619) 304-9955</a></div>
+        <div><p className="footer-label">Visit</p><p>4305 Gesner St<br />San Diego, CA 92117</p><p>Telehealth throughout California</p><a href="tel:+16193049955">(619) 304-9955</a></div>
         <div><p className="footer-label">Begin</p><a href="#consultation">Free consultation</a><a href="#faq">Frequently asked questions</a></div>
+        <div className="footer-verify">
+          {/* Professional verification provided by Psychology Today */}
+          <a href="https://www.psychologytoday.com/profile/1817168" className="sx-verified-seal" />
+          <Script
+            id="psychology-today-seal"
+            src="https://member.psychologytoday.com/verified-seal.js"
+            strategy="lazyOnload"
+            data-badge="10"
+            data-id="1817168"
+            data-code="aHR0cHM6Ly93d3cucHN5Y2hvbG9neXRvZGF5LmNvbS9hcGkvdmVyaWZpZWQtc2VhbC9zZWFscy8xMC9wcm9maWxlLzE4MTcxNjg/Y2FsbGJhY2s9c3hjYWxsYmFjaw=="
+          />
+        </div>
         <div className="footer-bottom"><span>© 2026 Aligned Within Psychology. All rights reserved.</span><span>Privacy · Terms · Accessibility</span><span>Therapy is not emergency care.</span></div>
       </footer>
     </main>
