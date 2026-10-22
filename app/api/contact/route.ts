@@ -25,7 +25,7 @@ const FROM =
   process.env.CONTACT_FROM_EMAIL ??
   'Aligned Within <aligned-within@updates.thesurgeagency.com>';
 
-const LIMITS = { name: 120, email: 200, message: 4000 } as const;
+const LIMITS = { name: 120, email: 200, phone: 40, message: 4000 } as const;
 
 function bad(message: string, status = 400) {
   return NextResponse.json({ ok: false, error: message }, { status });
@@ -49,12 +49,16 @@ export async function POST(request: Request) {
 
   const name = typeof data.name === 'string' ? data.name.trim() : '';
   const email = typeof data.email === 'string' ? data.email.trim() : '';
+  const phone = typeof data.phone === 'string' ? data.phone.trim() : '';
   const message = typeof data.message === 'string' ? data.message.trim() : '';
 
   if (!name || !email || !message) return bad('Please fill in every field.');
   if (name.length > LIMITS.name) return bad('That name is too long.');
   if (email.length > LIMITS.email) return bad('That email address is too long.');
   if (message.length > LIMITS.message) return bad('That message is too long.');
+  // Optional, so only its length is enforced. Shape is left alone: people write
+  // numbers in many ways and rejecting a real one costs more than it saves.
+  if (phone.length > LIMITS.phone) return bad('That phone number is too long.');
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return bad('Please check the email address.');
 
   const apiKey = process.env.RESEND_API_KEY;
@@ -64,7 +68,7 @@ export async function POST(request: Request) {
     return bad('The form is not available right now.', 503);
   }
 
-  const inquiry = { name, email, message, submittedAt: new Date() };
+  const inquiry = { name, email, phone: phone || undefined, message, submittedAt: new Date() };
 
   let response: Response;
   try {

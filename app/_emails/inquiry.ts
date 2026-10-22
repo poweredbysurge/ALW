@@ -22,9 +22,27 @@ const BODY = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, s
 export type Inquiry = {
   name: string;
   email: string;
+  /** Optional on the form, so every use of it has to handle absence. */
+  phone?: string;
   message: string;
   submittedAt: Date;
 };
+
+/**
+ * tel: wants digits, not the shape a person typed. Ten digits are assumed to be
+ * US and get a +1; anything already carrying a country code is kept as is. If
+ * it does not look dialable the caller gets null and no button is drawn.
+ */
+function telHref(raw: string | undefined): string | null {
+  if (!raw) return null;
+  const trimmed = raw.trim();
+  const digits = trimmed.replace(/[^\d]/g, '');
+  if (digits.length < 7 || digits.length > 15) return null;
+  if (trimmed.startsWith('+')) return `tel:+${digits}`;
+  if (digits.length === 10) return `tel:+1${digits}`;
+  if (digits.length === 11 && digits.startsWith('1')) return `tel:+${digits}`;
+  return `tel:+${digits}`;
+}
 
 /** Anything a sender types is untrusted; it must never reach the HTML raw. */
 function escapeHtml(value: string): string {
@@ -54,6 +72,7 @@ export function inquiryText(inquiry: Inquiry): string {
     '',
     `Name:  ${inquiry.name}`,
     `Email: ${inquiry.email}`,
+    ...(inquiry.phone ? [`Phone: ${inquiry.phone}`] : []),
     `Sent:  ${formatStamp(inquiry.submittedAt)}`,
     '',
     'What they would like support with',
@@ -70,6 +89,8 @@ export function inquiryHtml(inquiry: Inquiry): string {
   const email = escapeHtml(inquiry.email);
   const message = escapeHtml(inquiry.message).replace(/\r?\n/g, '<br />');
   const stamp = escapeHtml(formatStamp(inquiry.submittedAt));
+  const tel = telHref(inquiry.phone);
+  const phoneLabel = inquiry.phone ? escapeHtml(inquiry.phone.trim()) : '';
 
   const label = `font:600 10px/1 ${BODY};letter-spacing:.14em;text-transform:uppercase;color:${CLAY};`;
 
@@ -138,6 +159,14 @@ export function inquiryHtml(inquiry: Inquiry): string {
                     </div>
                   </td>
                 </tr>
+                ${tel ? `<tr>
+                  <td style="padding:16px 0;border-top:1px solid ${LINE};">
+                    <div style="${label}">Phone</div>
+                    <div style="font:400 16px/1.5 ${BODY};padding-top:7px;">
+                      <a href="${tel}" style="color:${INK};text-decoration:underline;text-underline-offset:2px;">${phoneLabel}</a>
+                    </div>
+                  </td>
+                </tr>` : ''}
                 <tr>
                   <td style="padding:16px 0;border-top:1px solid ${LINE};border-bottom:1px solid ${LINE};">
                     <div style="${label}">Received</div>
@@ -170,9 +199,16 @@ export function inquiryHtml(inquiry: Inquiry): string {
                   <td style="background:${GOLD};">
                     <a href="mailto:${email}?subject=Re%3A%20your%20consultation%20request"
                        style="display:inline-block;padding:15px 26px;font:600 11px/1 ${BODY};letter-spacing:.1em;text-transform:uppercase;color:${INK};text-decoration:none;">
-                      Reply to ${name}
+                      Reply by email
                     </a>
                   </td>
+                  ${tel ? `<td style="width:12px;"></td>
+                  <td style="border:1px solid ${INK};">
+                    <a href="${tel}"
+                       style="display:inline-block;padding:14px 25px;font:600 11px/1 ${BODY};letter-spacing:.1em;text-transform:uppercase;color:${INK};text-decoration:none;">
+                      Call ${name.split(' ')[0]}
+                    </a>
+                  </td>` : ''}
                 </tr>
               </table>
               <div style="font:400 14px/1.6 ${BODY};color:${CLAY};padding-top:18px;">

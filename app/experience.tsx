@@ -90,6 +90,10 @@ export function ConsultationForm({ compact = false }: { compact?: boolean }) {
         </label>
       </div>
       <label>
+        <span>Phone <em>(optional)</em></span>
+        <input name="phone" type="tel" autoComplete="tel" placeholder="(619) 555-0134" disabled={sending} />
+      </label>
+      <label>
         <span>What would you like support with?</span>
         <textarea name="message" rows={compact ? 3 : 4} placeholder="Share only what feels comfortable." required disabled={sending} />
       </label>

@@ -100,6 +100,9 @@
   .form-success p { max-width: 460px; color: inherit; opacity: .72; }
   .consult-form { display: flex; flex-direction: column; gap: 28px; }
   .consult-form label { display: flex; flex-direction: column; gap: 9px; }
+  /* "(optional)" sits inside an uppercase tracked label, so it needs to read
+     as an aside rather than part of the field name. */
+  .consult-form label > span em { font-style: normal; opacity: .6; letter-spacing: .08em; }
   .consult-form label > span { font: 600 11px/1 var(--font-body); letter-spacing: .12em; text-transform: uppercase; }
   .field-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
   .consult-form input, .consult-form textarea { width: 100%; border: 0; border-bottom: 1px solid color-mix(in srgb, var(--color-ink) 35%, transparent); border-radius: 0; padding: 14px 0; outline: none; background: transparent; color: inherit; font: 400 16px/1.4 var(--font-body); resize: vertical; transition: border-color .2s ease, box-shadow .2s ease; }
