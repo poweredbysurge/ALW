@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 import { LegalShell } from '../_components/legal-shell';
+import { SmsConsent } from '../_components/sms-consent';
 
 export const metadata: Metadata = {
   title: 'Terms of Service',
@@ -46,6 +47,7 @@ export default function TermsPage() {
           Aligned Within Psychological Services PC operates a text messaging programme for people
           who ask to be contacted that way.
         </p>
+        <SmsConsent className="sms-consent--legal" />
         <ul>
           <li>
             <b>What we send.</b> Appointment scheduling, reminders, confirmations, and replies to

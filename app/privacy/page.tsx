@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 import { LegalShell } from '../_components/legal-shell';
+import { SmsConsent } from '../_components/sms-consent';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy',
@@ -45,6 +46,7 @@ export default function PrivacyPage() {
 
       <section>
         <h2>Text messaging and SMS</h2>
+        <SmsConsent className="sms-consent--legal" />
         <p className="legal-callout">
           Aligned Within Psychological Services PC does not share mobile numbers, text messaging
           originator opt-in data, or consent with any third parties or affiliates for marketing or

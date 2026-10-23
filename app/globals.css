@@ -638,6 +638,48 @@
   }
 }
 
+/* ---------------------------------------------------------------------------
+   SMS consent disclosure.
+   Required fine print, so it reads quietly without hiding: it still has to
+   clear contrast on every ground it sits on.
+--------------------------------------------------------------------------- */
+@layer components {
+  .sms-consent__number { margin: 0 0 8px; font-size: 15px; }
+  .sms-consent__number a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+  .sms-consent__body { margin: 0; font-size: 13px; line-height: 1.7; }
+  .sms-consent__body a { color: inherit; text-decoration: underline; text-underline-offset: 2px; overflow-wrap: anywhere; }
+
+  /* Under the consultation form, on the gold band. */
+  .sms-consent--form {
+    margin-top: 34px;
+    padding-top: 24px;
+    border-top: 1px solid color-mix(in srgb, var(--color-ink) 28%, transparent);
+    color: var(--color-ink);
+    max-width: 62ch;
+  }
+  .sms-consent--form .sms-consent__number { font-weight: 500; }
+
+  /* Footer, spanning the full grid so the text has room to breathe. */
+  .footer-sms { grid-column: 1 / -1; margin-top: 54px; }
+  .sms-consent--footer { max-width: 86ch; color: color-mix(in srgb, var(--color-paper) 80%, transparent); }
+  .sms-consent--footer .sms-consent__number a { color: var(--color-paper); }
+
+  /* Policy pages. */
+  .sms-consent--legal {
+    margin: 0 0 22px;
+    padding: 20px 24px;
+    border-left: 2px solid var(--color-gold);
+    background: var(--color-sand);
+    color: var(--color-ink);
+    max-width: none;
+  }
+  .sms-consent--legal .sms-consent__body { font-size: 15px; }
+
+  @media (max-width: 780px) {
+    .footer-sms { margin-top: 40px; }
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }

@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Script from 'next/script';
 
+import { SmsConsent } from './sms-consent';
 import { SunMark } from './sun-mark';
 
 import { ConsultationForm, Experience } from '../experience';
@@ -181,7 +182,10 @@ export function Home() {
           <div className="consult-reassurance"><SunMark /><span>No commitment.<br />Just a human conversation.</span></div>
           <p className="consult-phone">Prefer to talk? Call <a href="tel:+16193049955">(619) 304-9955</a>.</p>
         </div>
-        <div data-reveal><ConsultationForm /></div>
+        <div data-reveal>
+          <ConsultationForm />
+          <SmsConsent className="sms-consent--form" />
+        </div>
       </section>
 
       <section className="sunlit-fees section-pad" id="fees">
@@ -252,6 +256,10 @@ export function Home() {
         <div><p className="footer-label">Practice</p><a href="#about">About Ellie</a><a href="#treatments">Treatments</a><a href="#modalities">Modalities</a><a href="#services">Services</a></div>
         <div><p className="footer-label">Visit</p><p>4305 Gesner St<br />San Diego, CA 92117</p><p>Telehealth throughout California</p><a href="tel:+16193049955">(619) 304-9955</a></div>
         <div><p className="footer-label">Begin</p><a href="#consultation">Free consultation</a><a href="#faq">Frequently asked questions</a></div>
+        <div className="footer-sms">
+          <p className="footer-label">Text messaging</p>
+          <SmsConsent className="sms-consent--footer" />
+        </div>
         <div className="footer-verify">
           {/* Professional verification provided by Psychology Today */}
           <a href="https://www.psychologytoday.com/profile/1817168" className="sx-verified-seal" />
